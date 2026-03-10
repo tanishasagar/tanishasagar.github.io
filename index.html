@@ -298,6 +298,44 @@ color:#60a5fa;
 text-decoration:none;
 }
 
+.contact-card{
+max-width:500px;
+margin:40px auto 0 auto;
+background:rgba(30,41,59,0.35);
+border:1px solid rgba(255,255,255,0.08);
+border-radius:20px;
+padding:35px;
+display:flex;
+flex-direction:column;
+gap:20px;
+backdrop-filter:blur(10px);
+}
+
+.contact-item{
+display:flex;
+align-items:center;
+gap:12px;
+font-size:16px;
+}
+
+.contact-item i{
+color:#6366f1;
+font-size:18px;
+}
+
+.contact-item a{
+color:#cbd5f5;
+text-decoration:none;
+transition:.3s;
+}
+
+.contact-item a:hover{
+color:#60a5fa;
+}
+.contact-card:hover{
+box-shadow:0 0 35px rgba(99,102,241,0.35);
+}
+
 /* footer */
 
 footer{
@@ -410,7 +448,7 @@ View My Work
 <i class="fa-brands fa-github"></i>
 </a>
 
-<a href="https://linkedin.com/in/tanisha-sagar" target="_blank">
+<a href="https://www.linkedin.com/in/tanisha-sagar-671b2b2b3" target="_blank">
 <i class="fa-brands fa-linkedin"></i>
 </a>
 
@@ -427,7 +465,7 @@ View My Work
 
 <div class="projects">
 
-<a href="#proj1" class="card reveal">
+<a href="#threat_intelligence_aggregator" class="card reveal">
 <h3>Threat Intelligence Aggregator</h3>
 <p>Aggregates threat feeds and extracts IOCs.</p>
 <div class="tags">
@@ -436,15 +474,16 @@ View My Work
 </div>
 </a>
 
-<a href="#proj2" class="card">
+<a href="#pdf_malware_analysis" class="card">
 <h3>PDF Malware Analysis</h3>
 <p>Static & dynamic malware analysis of malicious PDFs.</p>
 <span class="tag">Malware</span>
 <span class="tag">Sandbox</span>
+</div>
 </a>
 
-<a href="#proj3" class="card">
-<h3>Registry Monitoring</h3>
+<a href="#windows_process_monitoring" class="card">
+<h3>Windows Registry Monitoring</h3>
 <p>Detects suspicious Windows registry persistence changes.</p>
 <div class="tags">
 <span class="tag">Windows</span>
@@ -452,8 +491,8 @@ View My Work
 </div>
 </a>
 
-<a href="#proj4" class="card">
-<h3>Process Monitoring Agent</h3>
+<a href="#windows_service_process_monitoring" class="card">
+<h3>Windows Service & Process Monitoring Agent</h3>
 <p>Detects suspicious Windows processes and services.</p>
 <div class="tags">
 <span class="tag">SOC</span>
@@ -488,9 +527,24 @@ View My Work
 
 <h2>Contact</h2>
 
-<p>Email: <a href="mailto:thetanishasagar@gmail.com">thetanishasagar@gmail.com</a></p>
-<p>GitHub: <a href="https://github.com/tanishasagar">github.com/tanishasagar</a></p>
-<p>LinkedIn: <a href="https://linkedin.com/in/tanisha-sagar">linkedin.com/in/tanisha-sagar</a></p>
+<div class="contact-card">
+
+<div class="contact-item">
+<i class="fa-solid fa-envelope"></i>
+<a href="mailto:thetanishasagar@gmail.com">thetanishasagar@gmail.com</a>
+</div>
+
+<div class="contact-item">
+<i class="fa-brands fa-github"></i>
+<a href="https://github.com/tanishasagar" target="_blank">github.com/tanishasagar</a>
+</div>
+
+<div class="contact-item">
+<i class="fa-brands fa-linkedin"></i>
+<a href="https://linkedin.com/in/tanisha-sagar" target="_blank">linkedin.com/in/tanisha-sagar</a>
+</div>
+
+</div>
 
 </section>
 
@@ -501,7 +555,7 @@ View My Work
 
 <!-- Project Modals -->
 
-<div id="proj1" class="modal">
+<div id="threat_intelligence_aggregator" class="modal">
 <div class="modal-content">
 <a href="#projects" class="close">&times;</a>
 <h2>Threat Intelligence Aggregator</h2>
@@ -510,7 +564,7 @@ View My Work
 </div>
 </div>
 
-<div id="proj2" class="modal">
+<div id="pdf_malware_analysis" class="modal">
 <div class="modal-content">
 <a href="#projects" class="close">&times;</a>
 <h2>PDF Malware Analysis</h2>
@@ -519,21 +573,21 @@ View My Work
 </div>
 </div>
 
-<div id="proj3" class="modal">
+<div id="windows_process_monitoring" class="modal">
 <div class="modal-content">
 <a href="#projects" class="close">&times;</a>
 <h2>Windows Registry Monitoring System</h2>
 <p>Python tool that detects unauthorized changes in registry persistence keys.</p>
-<a class="github-btn" href="https://github.com/tanishasagar/windows-registry_monitor" target="_blank">View on GitHub</a>
+<a class="github-btn" href="https://github.com/tanishasagar/windows-registry-monitor" target="_blank">View on GitHub</a>
 </div>
 </div>
 
-<div id="proj4" class="modal">
+<div id="windows_service_process_monitoring" class="modal">
 <div class="modal-content">
 <a href="#projects" class="close">&times;</a>
-<h2>Windows Process Monitoring Agent</h2>
+<h2>Windows Service & Process Monitoring Agent</h2>
 <p>Detects suspicious processes and services in Windows environments.</p>
-<a class="github-btn" href="#" target="_blank">View on GitHub</a>
+<a class="github-btn" href="https://github.com/tanishasagar/windows-service-process-monitor" target="_blank">View on GitHub</a>
 </div>
 </div>
 <script>
@@ -578,6 +632,7 @@ window.addEventListener("scroll", reveal);
 </script>
 </body>
 </html>
+
 
 
 
