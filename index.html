@@ -182,18 +182,22 @@ margin-bottom:60px;
 
 .projects{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:35px;
+grid-template-columns:repeat(auto-fit,minmax(360px,1fr));
+gap:40px;
+max-width:1100px;
+margin:auto;
 }
 
 .card{
 background:rgba(30,41,59,0.35);
 border:1px solid rgba(255,255,255,0.08);
-border-radius:18px;
-padding:25px;
+border-radius:20px;
+padding:32px;
 text-decoration:none;
 color:white;
 transition:.4s;
+min-height:150px;
+cursor:pointer;
 }
 
 .card:hover{
@@ -425,7 +429,7 @@ View My Work
 
 <div id="proj1" class="modal">
 <div class="modal-content">
-<a href="#" class="close">&times;</a>
+<a href="#projects" class="close">&times;</a>
 <h2>Threat Intelligence Aggregator</h2>
 <p>Python tool that collects threat feeds and extracts indicators of compromise such as IPs, domains and hashes.</p>
 <a class="github-btn" href="https://github.com/tanishasagar/Threat_Intel_Aggregator" target="_blank">View on GitHub</a>
@@ -434,7 +438,7 @@ View My Work
 
 <div id="proj2" class="modal">
 <div class="modal-content">
-<a href="#" class="close">&times;</a>
+<a href="#projects" class="close">&times;</a>
 <h2>PDF Malware Analysis</h2>
 <p>Performed static and dynamic analysis of malicious PDF samples using PDFID, pdf-parser and ANY.RUN.</p>
 <a class="github-btn" href="https://github.com/tanishasagar/PDF_Malware_Analysis" target="_blank">View on GitHub</a>
@@ -443,7 +447,7 @@ View My Work
 
 <div id="proj3" class="modal">
 <div class="modal-content">
-<a href="#" class="close">&times;</a>
+<a href="#projects" class="close">&times;</a>
 <h2>Windows Registry Monitoring System</h2>
 <p>Python tool that detects unauthorized changes in registry persistence keys.</p>
 <a class="github-btn" href="https://github.com/tanishasagar/windows-registry_monitor" target="_blank">View on GitHub</a>
@@ -452,7 +456,7 @@ View My Work
 
 <div id="proj4" class="modal">
 <div class="modal-content">
-<a href="#" class="close">&times;</a>
+<a href="#projects" class="close">&times;</a>
 <h2>Windows Process Monitoring Agent</h2>
 <p>Detects suspicious processes and services in Windows environments.</p>
 <a class="github-btn" href="#" target="_blank">View on GitHub</a>
@@ -461,3 +465,4 @@ View My Work
 
 </body>
 </html>
+
