@@ -216,7 +216,24 @@ background:linear-gradient(120deg,transparent,#6366f1,transparent);
 opacity:0;
 transition:0.4s;
 }
+.card::after{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:radial-gradient(circle at var(--x) var(--y),
+rgba(99,102,241,0.25),
+transparent 40%);
+opacity:0;
+transition:opacity .3s;
+pointer-events:none;
+}
 
+.card:hover::after{
+opacity:1;
+}
 .card{
 position:relative;
 overflow:hidden;
@@ -227,7 +244,7 @@ opacity:0.25;
 }
 
 .card:hover{
-transform:translateY(-10px);
+transform:translateY(-8px) scale(1.02);
 box-shadow:0 0 35px rgba(99,102,241,0.5);
 }
 
@@ -235,6 +252,7 @@ box-shadow:0 0 35px rgba(99,102,241,0.5);
 .card h3{
 color:#60a5fa;
 margin-bottom:10px;
+font-size:20px;
 }
 
 .card p{
@@ -250,16 +268,15 @@ border-radius:12px;
 font-size:12px;
 margin:6px 6px 0 0;
 border:1px solid rgba(255,255,255,0.1);
-width:auto;
-  
-display:flex;
-flex-wrap:wrap;
-gap:8px;
-margin-top:10px;
+white-space:nowrap;
 }
+
 .tag:hover{
 border-color:#6366f1;
 color:#6366f1;
+}
+.tags{
+margin-top:10px;
 }
 /* certificates */
 
@@ -349,7 +366,9 @@ transition:all 0.8s ease;
 opacity:1;
 transform:translateY(0);
 }
-h1,h2,h3{
+.hero h1,
+section h2,
+nav h2{
 font-family:'Space Grotesk',sans-serif;
 font-weight:400;
 letter-spacing:0.5px;
@@ -437,7 +456,7 @@ View My Work
 <h3>Process Monitoring Agent</h3>
 <p>Detects suspicious Windows processes and services.</p>
 <div class="tags">
-<span class="tag"SOC</span>
+<span class="tag">SOC</span>
 <span class="tag">Python</span>
 </div>
 </a>
@@ -518,8 +537,23 @@ View My Work
 </div>
 </div>
 <script>
+document.querySelectorAll(".card").forEach(card => {
 
+card.addEventListener("mousemove", e => {
+
+const rect = card.getBoundingClientRect();
+
+const x = e.clientX - rect.left;
+const y = e.clientY - rect.top;
+
+card.style.setProperty("--x", x + "px");
+card.style.setProperty("--y", y + "px");
+
+});
+
+});
 function reveal(){
+
 let reveals=document.querySelectorAll(".reveal");
 
 for(let i=0;i<reveals.length;i++){
@@ -531,8 +565,12 @@ let elementVisible=120;
 if(elementTop < windowHeight - elementVisible){
 reveals[i].classList.add("active");
 }
+else{
+reveals[i].classList.remove("active");
+}
 
 }
+
 }
 
 window.addEventListener("scroll", reveal);
@@ -540,6 +578,7 @@ window.addEventListener("scroll", reveal);
 </script>
 </body>
 </html>
+
 
 
 
