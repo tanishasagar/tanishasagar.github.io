@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Sora:wght@300;400;600&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="dark">
@@ -17,7 +17,7 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
+font-family:'Sora',sans-serif;
 }
 
 html{
@@ -248,14 +248,15 @@ font-size:12px;
 margin:6px 6px 0 0;
 border:1px solid rgba(255,255,255,0.1);
 width:auto;
+  
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin-top:10px;
 }
 .tag:hover{
 border-color:#6366f1;
 color:#6366f1;
-}
-
-.card .tag{
-align-self:flex-start;
 }
 /* certificates */
 
@@ -345,14 +346,17 @@ transition:all 0.8s ease;
 opacity:1;
 transform:translateY(0);
 }
-
+h1,h2,h3{
+font-family:'Orbitron',sans-serif;
+letter-spacing:1px;
+}
 </style>
 </head>
 
 <body>
 
 <nav>
-<h2>My Portfolio</h2>
+<h2>Tanisha Sagar</h2>
 
 <ul>
 <li><a href="#">Home</a></li>
@@ -403,8 +407,10 @@ View My Work
 <a href="#proj1" class="card reveal">
 <h3>Threat Intelligence Aggregator</h3>
 <p>Aggregates threat feeds and extracts IOCs.</p>
+<div class="tags">
 <span class="tag">Python</span>
 <span class="tag">Threat Intel</span>
+</div>
 </a>
 
 <a href="#proj2" class="card">
@@ -417,15 +423,19 @@ View My Work
 <a href="#proj3" class="card">
 <h3>Registry Monitoring</h3>
 <p>Detects suspicious Windows registry persistence changes.</p>
+<div class="tags">
 <span class="tag">Windows</span>
 <span class="tag">Python</span>
+</div>
 </a>
 
 <a href="#proj4" class="card">
 <h3>Process Monitoring Agent</h3>
 <p>Detects suspicious Windows processes and services.</p>
-<span class="tag">SOC</span>
+<div class="tags">
+<span class="tag"SOC</span>
 <span class="tag">Python</span>
+</div>
 </a>
 
 </div>
@@ -526,6 +536,7 @@ window.addEventListener("scroll", reveal);
 </script>
 </body>
 </html>
+
 
 
 
