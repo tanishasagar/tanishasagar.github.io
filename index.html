@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta name="color-scheme" content="dark">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+
 <title>Tanisha Sagar | Cybersecurity Portfolio</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 
@@ -13,45 +17,21 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family: 'Segoe UI', sans-serif;
+font-family:'Segoe UI',sans-serif;
 }
+
 html{
-color-scheme: dark;
+color-scheme:dark;
 background:#020617;
 }
-  .socials{
-margin-top:35px;
-display:flex;
-justify-content:center;
-gap:25px;
-}
 
-.socials a{
-font-size:22px;
-color:#94a3b8;
-transition:0.3s;
-}
-
-.socials a:hover{
-color:#6366f1;
-transform:scale(1.2);
-}
-
-.contact a{
-color:#60a5fa;
-text-decoration:none;
-}
-
-.contact a:hover{
-text-decoration:underline;
-}
 body{
 background:#020617;
 color:#e2e8f0;
 overflow-x:hidden;
 }
 
-/* Animated Background Glow */
+/* glowing background */
 
 body::before{
 content:"";
@@ -80,15 +60,11 @@ z-index:-1;
 }
 
 @keyframes floatGlow{
-from{
-transform:translate(0,0);
-}
-to{
-transform:translate(100px,50px);
-}
+from{transform:translate(0,0);}
+to{transform:translate(100px,50px);}
 }
 
-/* NAVBAR */
+/* navbar */
 
 nav{
 display:flex;
@@ -104,7 +80,6 @@ z-index:100;
 
 nav h2{
 color:#60a5fa;
-font-weight:600;
 }
 
 nav ul{
@@ -116,8 +91,7 @@ list-style:none;
 nav a{
 color:#cbd5f5;
 text-decoration:none;
-font-size:15px;
-transition:0.3s;
+transition:.3s;
 }
 
 nav a:hover{
@@ -131,16 +105,15 @@ border-radius:20px;
 color:white;
 }
 
-/* HERO */
+/* hero */
 
 .hero{
 text-align:center;
-padding:150px 20px 120px 20px;
+padding:150px 20px 120px;
 }
 
 .hero h1{
 font-size:64px;
-font-weight:700;
 }
 
 .hero span{
@@ -151,7 +124,7 @@ color:#6366f1;
 margin-top:20px;
 color:#94a3b8;
 font-size:18px;
-max-width:600px;
+max-width:650px;
 margin-left:auto;
 margin-right:auto;
 }
@@ -161,22 +134,39 @@ margin-top:40px;
 padding:14px 30px;
 border:none;
 border-radius:30px;
-font-size:16px;
-cursor:pointer;
-
 background:linear-gradient(90deg,#6366f1,#3b82f6);
 color:white;
-
-box-shadow:0 0 25px rgba(99,102,241,0.6);
-transition:0.3s;
+font-size:16px;
+cursor:pointer;
+box-shadow:0 0 25px rgba(99,102,241,.6);
+transition:.3s;
 }
 
 .hero button:hover{
 transform:scale(1.05);
-box-shadow:0 0 40px rgba(99,102,241,1);
 }
 
-/* SECTION */
+/* socials */
+
+.socials{
+margin-top:35px;
+display:flex;
+justify-content:center;
+gap:25px;
+}
+
+.socials a{
+font-size:22px;
+color:#94a3b8;
+transition:.3s;
+}
+
+.socials a:hover{
+color:#6366f1;
+transform:scale(1.2);
+}
+
+/* sections */
 
 section{
 padding:90px 10%;
@@ -188,7 +178,7 @@ font-size:40px;
 margin-bottom:60px;
 }
 
-/* PROJECT GRID */
+/* projects */
 
 .projects{
 display:grid;
@@ -196,37 +186,19 @@ grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
 gap:35px;
 }
 
-/* GLASS CARD */
-
 .card{
 background:rgba(30,41,59,0.35);
 border:1px solid rgba(255,255,255,0.08);
-backdrop-filter:blur(10px);
 border-radius:18px;
 padding:25px;
-transition:0.4s;
-position:relative;
-overflow:hidden;
-}
-
-/* glowing border */
-
-.card::before{
-content:"";
-position:absolute;
-inset:0;
-background:linear-gradient(120deg,transparent,#6366f1,transparent);
-opacity:0;
-transition:0.4s;
-}
-
-.card:hover::before{
-opacity:0.25;
+text-decoration:none;
+color:white;
+transition:.4s;
 }
 
 .card:hover{
 transform:translateY(-8px);
-box-shadow:0 20px 40px rgba(0,0,0,0.6);
+box-shadow:0 20px 40px rgba(0,0,0,.6);
 }
 
 .card h3{
@@ -237,21 +209,19 @@ margin-bottom:10px;
 .card p{
 color:#cbd5f5;
 font-size:14px;
-line-height:1.6;
-margin-bottom:12px;
 }
 
 .tag{
 display:inline-block;
 background:#020617;
-padding:5px 12px;
-border-radius:12px;
+padding:5px 10px;
+border-radius:10px;
 font-size:12px;
 margin:3px;
-border:1px solid rgba(255,255,255,0.1);
+border:1px solid rgba(255,255,255,.1);
 }
 
-/* CERTIFICATE GRID */
+/* certificates */
 
 .cert-grid{
 display:grid;
@@ -259,23 +229,76 @@ grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:30px;
 }
 
-/* CONTACT */
+/* contact */
 
 .contact{
 text-align:center;
-font-size:16px;
 line-height:2;
 }
 
-/* FOOTER */
+.contact a{
+color:#60a5fa;
+text-decoration:none;
+}
+
+/* footer */
 
 footer{
 text-align:center;
 padding:30px;
-margin-top:50px;
-border-top:1px solid rgba(255,255,255,0.08);
+margin-top:40px;
+border-top:1px solid rgba(255,255,255,.08);
 color:#94a3b8;
 }
+
+/* modal */
+
+.modal{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.85);
+opacity:0;
+pointer-events:none;
+transition:.3s;
+}
+
+.modal:target{
+opacity:1;
+pointer-events:auto;
+}
+
+.modal-content{
+background:#020617;
+width:700px;
+max-width:90%;
+margin:100px auto;
+padding:30px;
+border-radius:15px;
+position:relative;
+}
+
+.close{
+position:absolute;
+right:20px;
+top:10px;
+font-size:28px;
+text-decoration:none;
+color:white;
+}
+
+.github-btn{
+display:inline-block;
+margin-top:20px;
+padding:10px 18px;
+background:linear-gradient(90deg,#6366f1,#3b82f6);
+border-radius:20px;
+text-decoration:none;
+color:white;
+}
+
 </style>
 </head>
 
@@ -283,13 +306,15 @@ color:#94a3b8;
 
 <nav>
 <h2>Tanisha Sagar</h2>
+
 <ul>
 <li><a href="#">Home</a></li>
 <li><a href="#projects">Projects</a></li>
 <li><a href="#certificates">Certificates</a></li>
 <li><a href="#contact">Contact</a></li>
-<li><a class="resume-btn" href="#">Download Resume</a></li>
+<li><a class="resume-btn" href="Tanisha_Sagar_Resume.pdf" download>Download Resume</a></li>
 </ul>
+
 </nav>
 
 <section class="hero">
@@ -297,8 +322,8 @@ color:#94a3b8;
 <h1>Hi, I'm <span>Tanisha Sagar</span></h1>
 
 <p>
-Cybersecurity Student | Aspiring SOC Analyst  
-Focused on threat intelligence, malware analysis and system monitoring.
+Cybersecurity Student | Aspiring SOC Analyst focused on
+threat intelligence, malware analysis and system monitoring.
 </p>
 
 <button onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
@@ -324,43 +349,45 @@ View My Work
 </section>
 
 <section id="projects">
+
 <h2>Cybersecurity Projects</h2>
 
 <div class="projects">
 
-<div class="card">
+<a href="#proj1" class="card">
 <h3>Threat Intelligence Aggregator</h3>
-<p>Aggregates threat intelligence feeds and indicators of compromise to assist in security monitoring and analysis.</p>
+<p>Aggregates threat feeds and extracts IOCs.</p>
 <span class="tag">Python</span>
-<span class="tag">Threat Intelligence</span>
-<span class="tag">Security Monitoring</span>
-</div>
+<span class="tag">Threat Intel</span>
+</a>
 
-<div class="card">
+<a href="#proj2" class="card">
 <h3>PDF Malware Analysis</h3>
-<p>Analyzed suspicious PDF files to detect embedded malicious scripts and indicators of compromise.</p>
-<span class="tag">Malware Analysis</span>
-<span class="tag">Static Analysis</span>
-</div>
+<p>Static & dynamic malware analysis of malicious PDFs.</p>
+<span class="tag">Malware</span>
+<span class="tag">Sandbox</span>
+</a>
 
-<div class="card">
-<h3>Windows Registry Monitoring System</h3>
-<p>Monitors registry changes to detect suspicious persistence mechanisms used by malware.</p>
+<a href="#proj3" class="card">
+<h3>Registry Monitoring</h3>
+<p>Detects suspicious Windows registry persistence changes.</p>
+<span class="tag">Windows</span>
 <span class="tag">Python</span>
-<span class="tag">Windows Security</span>
-</div>
+</a>
 
-<div class="card">
-<h3>Windows Process Monitoring Agent</h3>
-<p>Detects unusual or malicious processes and services running on Windows systems.</p>
+<a href="#proj4" class="card">
+<h3>Process Monitoring Agent</h3>
+<p>Detects suspicious Windows processes and services.</p>
+<span class="tag">SOC</span>
 <span class="tag">Python</span>
-<span class="tag">System Monitoring</span>
-</div>
+</a>
 
 </div>
+
 </section>
 
 <section id="certificates">
+
 <h2>Certifications</h2>
 
 <div class="cert-grid">
@@ -383,26 +410,9 @@ View My Work
 
 <h2>Contact</h2>
 
-<p>
-Email:
-<a href="mailto:thetanishasagar@gmail.com">
-thetanishasagar@gmail.com
-</a>
-</p>
-
-<p>
-GitHub:
-<a href="https://github.com/tanishasagar" target="_blank">
-github.com/tanishasagar
-</a>
-</p>
-
-<p>
-LinkedIn:
-<a href="https://linkedin.com/in/tanisha-sagar" target="_blank">
-linkedin.com/in/tanisha-sagar
-</a>
-</p>
+<p>Email: <a href="mailto:thetanishasagar@gmail.com">thetanishasagar@gmail.com</a></p>
+<p>GitHub: <a href="https://github.com/tanishasagar">github.com/tanishasagar</a></p>
+<p>LinkedIn: <a href="https://linkedin.com/in/tanisha-sagar">linkedin.com/in/tanisha-sagar</a></p>
 
 </section>
 
@@ -410,7 +420,44 @@ linkedin.com/in/tanisha-sagar
 <p>© 2026 Tanisha Sagar</p>
 </footer>
 
+
+<!-- Project Modals -->
+
+<div id="proj1" class="modal">
+<div class="modal-content">
+<a href="#" class="close">&times;</a>
+<h2>Threat Intelligence Aggregator</h2>
+<p>Python tool that collects threat feeds and extracts indicators of compromise such as IPs, domains and hashes.</p>
+<a class="github-btn" href="https://github.com/tanishasagar/Threat_Intel_Aggregator" target="_blank">View on GitHub</a>
+</div>
+</div>
+
+<div id="proj2" class="modal">
+<div class="modal-content">
+<a href="#" class="close">&times;</a>
+<h2>PDF Malware Analysis</h2>
+<p>Performed static and dynamic analysis of malicious PDF samples using PDFID, pdf-parser and ANY.RUN.</p>
+<a class="github-btn" href="https://github.com/tanishasagar/PDF_Malware_Analysis" target="_blank">View on GitHub</a>
+</div>
+</div>
+
+<div id="proj3" class="modal">
+<div class="modal-content">
+<a href="#" class="close">&times;</a>
+<h2>Windows Registry Monitoring System</h2>
+<p>Python tool that detects unauthorized changes in registry persistence keys.</p>
+<a class="github-btn" href="https://github.com/tanishasagar/windows-registry_monitor" target="_blank">View on GitHub</a>
+</div>
+</div>
+
+<div id="proj4" class="modal">
+<div class="modal-content">
+<a href="#" class="close">&times;</a>
+<h2>Windows Process Monitoring Agent</h2>
+<p>Detects suspicious processes and services in Windows environments.</p>
+<a class="github-btn" href="#" target="_blank">View on GitHub</a>
+</div>
+</div>
+
 </body>
 </html>
-
-
