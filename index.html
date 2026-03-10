@@ -242,13 +242,21 @@ font-size:14px;
 .tag{
 display:inline-block;
 background:#020617;
-padding:5px 10px;
-border-radius:10px;
+padding:5px 12px;
+border-radius:12px;
 font-size:12px;
-margin:3px;
-border:1px solid rgba(255,255,255,.1);
+margin:6px 6px 0 0;
+border:1px solid rgba(255,255,255,0.1);
+width:auto;
+}
+.tag:hover{
+border-color:#6366f1;
+color:#6366f1;
 }
 
+.card .tag{
+align-self:flex-start;
+}
 /* certificates */
 
 .cert-grid{
@@ -337,13 +345,14 @@ transition:all 0.8s ease;
 opacity:1;
 transform:translateY(0);
 }
+
 </style>
 </head>
 
 <body>
 
 <nav>
-<h2>Tanisha Sagar</h2>
+<h2>My Portfolio</h2>
 
 <ul>
 <li><a href="#">Home</a></li>
@@ -517,5 +526,6 @@ window.addEventListener("scroll", reveal);
 </script>
 </body>
 </html>
+
 
 
