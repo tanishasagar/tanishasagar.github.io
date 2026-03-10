@@ -201,7 +201,7 @@ color:white;
 transition:.4s;
 cursor:pointer;
 
-min-height:220px;
+height:220px;
 
 display:flex;
 flex-direction:column;
@@ -298,18 +298,7 @@ color:#60a5fa;
 text-decoration:none;
 }
 
-.contact-card{
-max-width:500px;
-margin:40px auto 0 auto;
-background:rgba(30,41,59,0.35);
-border:1px solid rgba(255,255,255,0.08);
-border-radius:20px;
-padding:35px;
-display:flex;
-flex-direction:column;
-gap:20px;
-backdrop-filter:blur(10px);
-}
+
 
 .contact-item{
 display:flex;
@@ -332,9 +321,7 @@ transition:.3s;
 .contact-item a:hover{
 color:#60a5fa;
 }
-.contact-card:hover{
-box-shadow:0 0 35px rgba(99,102,241,0.35);
-}
+
 
 /* footer */
 
@@ -411,6 +398,35 @@ font-family:'Space Grotesk',sans-serif;
 font-weight:400;
 letter-spacing:0.5px;
 }
+  .contact-links{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:18px;
+margin-top:30px;
+}
+
+.contact-item{
+display:flex;
+align-items:center;
+gap:12px;
+font-size:16px;
+}
+
+.contact-item i{
+color:#6366f1;
+font-size:18px;
+}
+
+.contact-item a{
+color:#cbd5f5;
+text-decoration:none;
+transition:.3s;
+}
+
+.contact-item a:hover{
+color:#60a5fa;
+}
 </style>
 </head>
 
@@ -477,9 +493,12 @@ View My Work
 <a href="#pdf_malware_analysis" class="card">
 <h3>PDF Malware Analysis</h3>
 <p>Static & dynamic malware analysis of malicious PDFs.</p>
+
+<div class="tags">
 <span class="tag">Malware</span>
 <span class="tag">Sandbox</span>
 </div>
+
 </a>
 
 <a href="#windows_process_monitoring" class="card">
@@ -632,6 +651,7 @@ window.addEventListener("scroll", reveal);
 </script>
 </body>
 </html>
+
 
 
 
