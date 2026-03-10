@@ -182,7 +182,7 @@ margin-bottom:60px;
 
 .projects{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(360px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
 gap:40px;
 max-width:1100px;
 margin:auto;
@@ -192,18 +192,42 @@ margin:auto;
 background:rgba(30,41,59,0.35);
 border:1px solid rgba(255,255,255,0.08);
 border-radius:20px;
-padding:32px;
+padding:35px;
 text-decoration:none;
 color:white;
 transition:.4s;
-min-height:150px;
 cursor:pointer;
+
+min-height:220px;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+}
+.card::before{
+content:"";
+position:absolute;
+inset:0;
+border-radius:20px;
+background:linear-gradient(120deg,transparent,#6366f1,transparent);
+opacity:0;
+transition:0.4s;
+}
+
+.card{
+position:relative;
+overflow:hidden;
+}
+
+.card:hover::before{
+opacity:0.25;
 }
 
 .card:hover{
-transform:translateY(-8px);
-box-shadow:0 20px 40px rgba(0,0,0,.6);
+transform:translateY(-10px);
+box-shadow:0 0 35px rgba(99,102,241,0.5);
 }
+
 
 .card h3{
 color:#60a5fa;
@@ -303,6 +327,16 @@ text-decoration:none;
 color:white;
 }
 
+.reveal{
+opacity:0;
+transform:translateY(40px);
+transition:all 0.8s ease;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
+}
 </style>
 </head>
 
@@ -352,13 +386,12 @@ View My Work
 
 </section>
 
-<section id="projects">
-
+<section id="projects" class="reveal">
 <h2>Cybersecurity Projects</h2>
 
 <div class="projects">
 
-<a href="#proj1" class="card">
+<a href="#proj1" class="card reveal">
 <h3>Threat Intelligence Aggregator</h3>
 <p>Aggregates threat feeds and extracts IOCs.</p>
 <span class="tag">Python</span>
@@ -390,8 +423,7 @@ View My Work
 
 </section>
 
-<section id="certificates">
-
+<section id="certificates" class="reveal">
 <h2>Certifications</h2>
 
 <div class="cert-grid">
@@ -410,7 +442,7 @@ View My Work
 
 </section>
 
-<section id="contact" class="contact">
+<section id="contact" class="reveal">
 
 <h2>Contact</h2>
 
@@ -462,7 +494,28 @@ View My Work
 <a class="github-btn" href="#" target="_blank">View on GitHub</a>
 </div>
 </div>
+<script>
 
+function reveal(){
+let reveals=document.querySelectorAll(".reveal");
+
+for(let i=0;i<reveals.length;i++){
+
+let windowHeight=window.innerHeight;
+let elementTop=reveals[i].getBoundingClientRect().top;
+let elementVisible=120;
+
+if(elementTop < windowHeight - elementVisible){
+reveals[i].classList.add("active");
+}
+
+}
+}
+
+window.addEventListener("scroll", reveal);
+
+</script>
 </body>
 </html>
+
 
