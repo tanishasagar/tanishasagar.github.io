@@ -9,7 +9,7 @@
 
 <title>Tanisha Sagar | Cybersecurity Portfolio</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="sheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 
@@ -416,6 +416,20 @@ gap:18px;
 margin-top:30px;
 text-align:center;
 }  
+
+.project-ss{
+width:100%;
+margin-top:18px;
+border-radius:10px;
+border:1px solid rgba(255,255,255,0.08);
+}
+
+.project-caption{
+font-size:13px;
+color:#94a3b8;
+margin-top:6px;
+margin-bottom:10px;
+}
 </style>
 </head>
 
@@ -565,37 +579,121 @@ View My Work
 
 <div id="threat_intelligence_aggregator" class="modal">
 <div class="modal-content">
+
 <a href="#projects" class="close">&times;</a>
+
 <h2>Threat Intelligence Aggregator</h2>
-<p>Python tool that collects threat feeds and extracts indicators of compromise such as IPs, domains and hashes.</p>
-<a class="github-btn" href="https://github.com/tanishasagar/Threat_Intel_Aggregator" target="_blank">View on GitHub</a>
+
+<p>
+Python tool that collects threat intelligence feeds, normalizes
+Indicators of Compromise (IOCs) and highlights high-risk indicators
+such as malicious IPs, domains and URLs.
+</p>
+
+<img src="images/normalized_ioc.jpg" class="project-ss">
+<p class="project-caption">
+Normalized IOC dataset generated from multiple threat feeds.
+</p>
+
+<img src="images/high_risk_ioc.jpg" class="project-ss">
+<p class="project-caption">
+High-risk IOC detection highlighting malicious domains and IP addresses.
+</p>
+
+<a class="github-btn"
+href="https://github.com/tanishasagar/Threat_Intel_Aggregator"
+target="_blank">
+View on GitHub
+</a>
+
 </div>
 </div>
+
 
 <div id="pdf_malware_analysis" class="modal">
 <div class="modal-content">
+
 <a href="#projects" class="close">&times;</a>
+
 <h2>PDF Malware Analysis</h2>
-<p>Performed static and dynamic analysis of malicious PDF samples using PDFID, pdf-parser and ANY.RUN.</p>
-<a class="github-btn" href="https://github.com/tanishasagar/PDF_Malware_Analysis" target="_blank">View on GitHub</a>
+
+<p>
+Performed static and dynamic analysis of a malicious PDF sample
+to detect embedded JavaScript and suspicious actions using
+PDFID, pdf-parser and the ANY.RUN sandbox.
+</p>
+
+<img src="images/anyrun_sandbox.jpg" class="project-ss">
+<p class="project-caption">
+Dynamic malware analysis of the malicious PDF sample inside ANY.RUN sandbox.
+</p>
+
+<a class="github-btn"
+href="https://github.com/tanishasagar/PDF_Malware_Analysis"
+target="_blank">
+View on GitHub
+</a>
+
 </div>
 </div>
+
 
 <div id="windows_process_monitoring" class="modal">
 <div class="modal-content">
+
 <a href="#projects" class="close">&times;</a>
+
 <h2>Windows Registry Monitoring System</h2>
-<p>Python tool that detects unauthorized changes in registry persistence keys.</p>
-<a class="github-btn" href="https://github.com/tanishasagar/windows-registry-monitor" target="_blank">View on GitHub</a>
+
+<p>
+Python-based monitoring system that detects unauthorized registry
+changes in persistence locations such as Run and RunOnce keys.
+</p>
+
+<img src="images/registry_value_change.png" class="project-ss">
+<p class="project-caption">
+Registry value being monitored for suspicious persistence changes.
+</p>
+
+<img src="images/regsitry_change_detection.png" class="project-ss">
+<p class="project-caption">
+Command-line registry monitoring detecting unauthorized modification.
+</p>
+
+<a class="github-btn"
+href="https://github.com/tanishasagar/windows-registry-monitor"
+target="_blank">
+View on GitHub
+</a>
+
 </div>
 </div>
 
+
 <div id="windows_service_process_monitoring" class="modal">
 <div class="modal-content">
+
 <a href="#projects" class="close">&times;</a>
+
 <h2>Windows Service & Process Monitoring Agent</h2>
-<p>Detects suspicious processes and services in Windows environments.</p>
-<a class="github-btn" href="https://github.com/tanishasagar/windows-service-process-monitor" target="_blank">View on GitHub</a>
+
+<p>
+Python-based monitoring agent that analyzes Windows processes
+and services to detect suspicious behavior and abnormal
+execution patterns.
+</p>
+
+<img src="images/Detection_Logs.png" class="project-ss">
+<p class="project-caption">
+Detection logs identifying suspicious processes running from user directories.
+</p>
+
+<a class="github-btn"
+href="https://github.com/tanishasagar/windows-service-process-monitor"
+target="_blank">
+View on GitHub
+</a>
+
 </div>
 </div>
 <script>
@@ -640,6 +738,7 @@ window.addEventListener("scroll", reveal);
 </script>
 </body>
 </html>
+
 
 
 
