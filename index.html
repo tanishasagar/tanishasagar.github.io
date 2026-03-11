@@ -373,6 +373,17 @@ position:relative;
 max-height:80vh;
 overflow-y:auto;
 }
+.modal-content h3{
+margin-top:18px;
+color:#60a5fa;
+font-size:16px;
+}
+
+.modal-content p{
+font-size:14px;
+color:#cbd5f5;
+line-height:1.6;
+}
 
 .modal-content::-webkit-scrollbar{
 width:6px;
@@ -445,6 +456,10 @@ color:#94a3b8;
 margin-top:6px;
 margin-bottom:10px;
 }
+
+#skills .card{
+min-height:150px;
+}
 </style>
 </head>
 
@@ -468,8 +483,7 @@ margin-bottom:10px;
 <h1>Hi, I'm <span>Tanisha Sagar</span></h1>
 
 <p>
-Cybersecurity Student | Aspiring SOC Analyst focused on
-threat intelligence, malware analysis and system monitoring.
+Cybersecurity enthusiast focused on threat detection, log analysis, and system monitoring.
 </p>
 
 <button onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
@@ -560,6 +574,36 @@ View My Work
 
 </section>
 
+<section id="skills">
+
+<h2>Technical Skills</h2>
+
+<div class="projects">
+
+<div class="card">
+<h3>Security Operations</h3>
+<p>Threat Detection, Incident Response, SIEM Concepts, IDS/IPS (Suricata)</p>
+</div>
+
+<div class="card">
+<h3>Programming</h3>
+<p>Python (Automation, Log Parsing), Bash, SQL</p>
+</div>
+
+<div class="card">
+<h3>Networking</h3>
+<p>TCP/IP, DNS, ARP, HTTP/HTTPS, Packet Analysis, Wireshark</p>
+</div>
+
+<div class="card">
+<h3>Systems</h3>
+<p>Linux Administration, Windows Security Monitoring</p>
+</div>
+
+</div>
+
+</section>
+  
 <section id="contact" class="reveal">
 
 <h2>Contact</h2>
@@ -599,10 +643,29 @@ View My Work
 
 <h2>Threat Intelligence Aggregator</h2>
 
+<h3>Problem</h3>
 <p>
-Python tool that collects threat intelligence feeds, normalizes
-Indicators of Compromise (IOCs) and highlights high-risk indicators
-such as malicious IPs, domains and URLs.
+Threat intelligence feeds are often distributed across multiple formats
+(TXT, CSV, JSON) making manual correlation difficult and time-consuming
+for security analysts.
+</p>
+
+<h3>Approach</h3>
+<p>
+Developed a Python-based aggregation tool that parses multiple threat
+feeds, normalizes indicators (IP, domain, URL, hash), correlates them
+across sources, and assigns severity based on cross-feed occurrence.
+</p>
+
+<h3>Tools Used</h3>
+<p>
+Python, Regex, CSV/JSON parsing, Command Line, Visual Studio Code
+</p>
+
+<h3>Result</h3>
+<p>
+Successfully generated normalized IOC datasets and identified high-risk
+indicators appearing across multiple threat intelligence sources.
 </p>
 
 <img src="images/normalized_ioc.jpg" class="project-ss">
@@ -632,10 +695,29 @@ View on GitHub
 
 <h2>PDF Malware Analysis</h2>
 
+<h3>Problem</h3>
 <p>
-Performed static and dynamic analysis of a malicious PDF sample
-to detect embedded JavaScript and suspicious actions using
-PDFID, pdf-parser and the ANY.RUN sandbox.
+Malicious PDF files can embed JavaScript and automatic execution
+triggers, allowing attackers to execute hidden payloads when the
+document is opened.
+</p>
+
+<h3>Approach</h3>
+<p>
+Performed static analysis using PDFID and pdf-parser to identify
+suspicious elements, followed by dynamic sandbox analysis to observe
+runtime behavior, process activity, and network communication.
+</p>
+
+<h3>Tools Used</h3>
+<p>
+PDFID, pdf-parser.py, ANY.RUN Sandbox, Python, Windows Command Prompt
+</p>
+
+<h3>Result</h3>
+<p>
+Identified embedded JavaScript, OpenAction triggers, abnormal process
+execution, and sandbox-confirmed malicious behavior in the analyzed PDF.
 </p>
 
 <img src="images/anyrun_sandbox.jpg" class="project-ss">
@@ -660,9 +742,29 @@ View on GitHub
 
 <h2>Windows Registry Monitoring System</h2>
 
+<h3>Problem</h3>
 <p>
-Python-based monitoring system that detects unauthorized registry
-changes in persistence locations such as Run and RunOnce keys.
+Malware frequently modifies Windows Registry keys such as Run and
+RunOnce to maintain persistence and execute automatically during
+system startup.
+</p>
+
+<h3>Approach</h3>
+<p>
+Developed a Python-based monitoring system that creates a baseline of
+trusted registry values and continuously compares live registry states
+to detect new, modified, or deleted entries.
+</p>
+
+<h3>Tools Used</h3>
+<p>
+Python, winreg module, Windows OS, Command Prompt, Visual Studio Code
+</p>
+
+<h3>Result</h3>
+<p>
+Successfully detected startup persistence attempts and Windows Defender
+policy modifications using baseline comparison and real-time monitoring.
 </p>
 
 <img src="images/registry_value_change.png" class="project-ss">
@@ -692,10 +794,29 @@ View on GitHub
 
 <h2>Windows Service & Process Monitoring Agent</h2>
 
+<h3>Problem</h3>
 <p>
-Python-based monitoring agent that analyzes Windows processes
-and services to detect suspicious behavior and abnormal
-execution patterns.
+Attackers often abuse legitimate Windows processes and services to run
+malicious code or maintain persistence without detection.
+</p>
+
+<h3>Approach</h3>
+<p>
+Built a monitoring agent that enumerates processes and services,
+analyzes parent-child relationships, detects execution from
+user-writable directories, and classifies alerts by severity.
+</p>
+
+<h3>Tools Used</h3>
+<p>
+Python, psutil library, PowerShell (WMI), Windows OS, Visual Studio Code
+</p>
+
+<h3>Result</h3>
+<p>
+Detected suspicious processes running from user directories and
+generated timestamped logs with severity-based alerts simulating
+SOC-style monitoring.
 </p>
 
 <img src="images/Detection_Logs.png" class="project-ss">
@@ -753,6 +874,7 @@ window.addEventListener("scroll", reveal);
 </script>
 </body>
 </html>
+
 
 
 
