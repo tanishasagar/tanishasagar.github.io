@@ -289,6 +289,12 @@ h2.section-title{
 .cert{
   background:var(--surface);border:1px solid var(--line);
   border-radius:12px;padding:24px;display:flex;gap:16px;align-items:flex-start;
+  text-decoration:none;color:inherit;transition:border-color .2s,transform .2s;
+}
+a.cert:hover{border-color:rgba(61,220,151,.45);transform:translateY(-3px);}
+.cert-verify{
+  margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--accent);
+  white-space:nowrap;padding-top:2px;
 }
 .cert i{color:var(--accent);font-size:17px;margin-top:3px;}
 .cert h3{font-family:var(--display);font-size:15.5px;font-weight:600;margin-bottom:4px;line-height:1.35;}
@@ -737,26 +743,31 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   <p class="section-sub">Plus SQL injection labs on PortSwigger Web Security Academy and foundational labs on TryHackMe.</p>
 
   <div class="cert-list">
-    <div class="cert rv">
+        <a class="cert rv" href="PASTE_VERIFY_LINK_HERE" target="_blank" rel="noopener">
       <i class="fa-solid fa-certificate"></i>
       <div><h3>Google Cybersecurity Professional Certificate</h3><span>Coursera · 2025</span></div>
-    </div>
-    <div class="cert rv">
+      <span class="cert-verify">Verify ↗</span>
+    </a>
+        <a class="cert rv" href="https://www.credly.com/badges/69d7d98e-4c01-4fba-bce1-e1c9732daa76" target="_blank" rel="noopener">
       <i class="fa-solid fa-certificate"></i>
       <div><h3>Cisco Certified Network Associate (CCNA)</h3><span>Cisco · 2025</span></div>
-    </div>
-    <div class="cert rv">
+      <span class="cert-verify">Verify ↗</span>
+    </a>
+        <a class="cert rv" href="https://www.credly.com/badges/cd291a24-67f6-4e8a-9567-cb94f8c4f78d" target="_blank" rel="noopener">
       <i class="fa-solid fa-certificate"></i>
       <div><h3>Network Security</h3><span>Cisco · 2026</span></div>
-    </div>
-    <div class="cert rv">
+      <span class="cert-verify">Verify ↗</span>
+    </a>
+        <a class="cert rv" href="https://www.credly.com/badges/98aafcca-d275-4177-bc57-60b951e1a029" target="_blank" rel="noopener">
       <i class="fa-solid fa-certificate"></i>
       <div><h3>Introduction to Cybersecurity</h3><span>Cisco Networking Academy · 2025</span></div>
-    </div>
-    <div class="cert rv">
+      <span class="cert-verify">Verify ↗</span>
+    </a>
+        <a class="cert rv" href="https://www.credly.com/earner/earned/badge/290bc6cc-6a6f-438f-abcd-b822b98877a0" target="_blank" rel="noopener">
       <i class="fa-solid fa-certificate"></i>
       <div><h3>Python for Data Science</h3><span>IBM · 2023</span></div>
-    </div>
+      <span class="cert-verify">Verify ↗</span>
+    </a>
   </div>
 </section>
 
