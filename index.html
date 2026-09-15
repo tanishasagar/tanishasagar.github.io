@@ -1,887 +1,899 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="dark">
+<meta name="description" content="Tanisha Sagar — Cybersecurity. Penetration testing, threat intelligence, and SOC fundamentals.">
+<title>Tanisha Sagar — Cybersecurity</title>
 
-<title>Tanisha Sagar | Cybersecurity Portfolio</title>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Inter',sans-serif;
+:root{
+  --bg:#070B12;
+  --surface:#0E1520;
+  --surface-2:#131C2A;
+  --line:rgba(255,255,255,.08);
+  --line-strong:rgba(255,255,255,.14);
+  --text:#E6EDF6;
+  --muted:#8A99AE;
+  --dim:#5D6B80;
+  --accent:#3DDC97;
+  --accent-2:#7C8CFF;
+  --warn:#F5A524;
+  --mono:'JetBrains Mono',monospace;
+  --display:'Space Grotesk',sans-serif;
+  --body:'Inter',sans-serif;
 }
 
-html{
-color-scheme:dark;
-background:#020617;
-}
-
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;color-scheme:dark;}
 body{
-background:#020617;
-color:#e2e8f0;
-overflow-x:hidden;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--body);
+  font-weight:300;
+  line-height:1.65;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
 }
 
-/* glowing background */
-
-body::before{
-content:"";
-position:fixed;
-width:600px;
-height:600px;
-background:radial-gradient(circle,#6366f1,transparent 70%);
-top:-200px;
-left:-200px;
-filter:blur(120px);
-animation:floatGlow 8s infinite alternate;
-z-index:-1;
+/* ---------- background ---------- */
+.bg-grid{
+  position:fixed;inset:0;z-index:-2;
+  background-image:
+    linear-gradient(rgba(124,140,255,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(124,140,255,.05) 1px,transparent 1px);
+  background-size:46px 46px;
+  mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 30%,transparent 78%);
+  -webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 30%,transparent 78%);
 }
-
-body::after{
-content:"";
-position:fixed;
-width:600px;
-height:600px;
-background:radial-gradient(circle,#3b82f6,transparent 70%);
-bottom:-200px;
-right:-200px;
-filter:blur(120px);
-animation:floatGlow 10s infinite alternate;
-z-index:-1;
+.bg-glow{
+  position:fixed;z-index:-1;width:640px;height:640px;border-radius:50%;
+  filter:blur(150px);opacity:.35;pointer-events:none;
 }
+.bg-glow.a{background:#1E5F52;top:-280px;left:-180px;}
+.bg-glow.b{background:#2A2F72;bottom:-320px;right:-220px;}
 
-@keyframes floatGlow{
-from{transform:translate(0,0);}
-to{transform:translate(100px,50px);}
-}
+::selection{background:rgba(61,220,151,.28);}
 
-/* navbar */
-
+/* ---------- nav ---------- */
 nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:25px 10%;
-background:rgba(2,6,23,0.6);
-backdrop-filter:blur(10px);
-position:sticky;
-top:0;
-z-index:100;
+  position:sticky;top:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 6vw;
+  background:rgba(7,11,18,.72);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
 }
-
-nav h2{
-color:#60a5fa;
+.brand{
+  font-family:var(--mono);font-size:15px;font-weight:600;
+  color:var(--text);text-decoration:none;letter-spacing:-.3px;
 }
-
-nav ul{
-display:flex;
-gap:30px;
-list-style:none;
+.brand span{color:var(--accent);}
+.nav-links{display:flex;gap:30px;list-style:none;align-items:center;}
+.nav-links a{
+  font-size:14px;color:var(--muted);text-decoration:none;
+  transition:color .2s;font-weight:400;
 }
-
-nav a{
-color:#cbd5f5;
-text-decoration:none;
-transition:.3s;
+.nav-links a:hover,.nav-links a:focus-visible{color:var(--text);}
+.cv-btn{
+  font-family:var(--mono);font-size:13px;font-weight:500;
+  padding:9px 16px;border-radius:6px;
+  border:1px solid var(--accent);color:var(--accent)!important;
+  text-decoration:none;transition:.2s;
 }
+.cv-btn:hover{background:var(--accent);color:#04120C!important;}
+.menu-toggle{display:none;background:none;border:none;color:var(--text);font-size:20px;cursor:pointer;}
 
-nav a:hover{
-color:white;
+/* ---------- layout ---------- */
+section{padding:110px 6vw;max-width:1180px;margin:0 auto;}
+.eyebrow{
+  font-family:var(--mono);font-size:12px;color:var(--accent);
+  letter-spacing:1px;margin-bottom:14px;display:block;
 }
-
-.resume-btn{
-background:linear-gradient(90deg,#6366f1,#3b82f6);
-padding:10px 18px;
-border-radius:20px;
-color:white;
+h2.section-title{
+  font-family:var(--display);font-size:clamp(30px,4.4vw,46px);
+  font-weight:600;letter-spacing:-1px;margin-bottom:12px;line-height:1.15;
 }
+.section-sub{color:var(--muted);font-size:15px;max-width:62ch;margin-bottom:54px;}
 
-/* hero */
-
-.hero{
-text-align:center;
-padding:150px 20px 120px;
+/* ---------- hero ---------- */
+.hero{padding-top:96px;padding-bottom:70px;}
+.status-pill{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:12.5px;color:var(--accent);
+  border:1px solid rgba(61,220,151,.3);background:rgba(61,220,151,.06);
+  padding:7px 15px;border-radius:100px;margin-bottom:30px;
 }
+.pulse{
+  width:7px;height:7px;border-radius:50%;background:var(--accent);
+  box-shadow:0 0 9px var(--accent);animation:pulse 2.2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 
 .hero h1{
-font-size:72px;
-font-weight:400;
-letter-spacing:1px;
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(46px,8.2vw,92px);line-height:.97;
+  letter-spacing:-3px;margin-bottom:26px;
+}
+.hero-role{
+  font-family:var(--mono);font-size:clamp(13px,1.6vw,15px);
+  color:var(--accent-2);margin-bottom:22px;letter-spacing:.2px;
+}
+.hero-copy{
+  font-size:17px;color:var(--muted);max-width:60ch;margin-bottom:38px;line-height:1.75;
+}
+.hero-copy strong{color:var(--text);font-weight:500;}
+
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+.btn-primary{
+  font-family:var(--mono);font-size:14px;font-weight:500;
+  background:var(--accent);color:#04120C;border:none;
+  padding:13px 24px;border-radius:7px;cursor:pointer;
+  text-decoration:none;display:inline-block;transition:.2s;
+}
+.btn-primary:hover{background:#5CEFAD;transform:translateY(-2px);}
+.btn-ghost{
+  font-family:var(--mono);font-size:14px;
+  border:1px solid var(--line-strong);color:var(--text);
+  padding:13px 24px;border-radius:7px;text-decoration:none;transition:.2s;
+}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+
+.stats{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:26px;margin-top:72px;padding-top:44px;border-top:1px solid var(--line);
+}
+.stat-num{
+  font-family:var(--display);font-size:42px;font-weight:600;
+  color:var(--text);letter-spacing:-1.5px;line-height:1;
+}
+.stat-num em{font-style:normal;color:var(--accent);}
+.stat-label{
+  font-family:var(--mono);font-size:11.5px;color:var(--dim);
+  margin-top:9px;letter-spacing:.4px;
 }
 
-.hero h1{
-font-weight:400;
+/* ---------- filters ---------- */
+.filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:40px;}
+.filter-btn{
+  font-family:var(--mono);font-size:12.5px;
+  background:transparent;border:1px solid var(--line);
+  color:var(--muted);padding:8px 16px;border-radius:100px;
+  cursor:pointer;transition:.2s;
 }
-.hero span{
-color:#6366f1;
+.filter-btn:hover{border-color:var(--line-strong);color:var(--text);}
+.filter-btn.active{background:var(--accent);border-color:var(--accent);color:#04120C;}
+
+/* ---------- project cards ---------- */
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:22px;}
+.pcard{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:14px;padding:30px;text-decoration:none;color:var(--text);
+  display:flex;flex-direction:column;transition:border-color .25s,transform .25s;
 }
-.hero span{
-background:linear-gradient(90deg,#60a5fa,#6366f1,#3b82f6);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-font-weight:500;
+.pcard:hover,.pcard:focus-visible{border-color:rgba(61,220,151,.45);transform:translateY(-4px);}
+.pcard-meta{
+  font-family:var(--mono);font-size:11.5px;color:var(--dim);
+  margin-bottom:14px;letter-spacing:.3px;
 }
-.hero span{
-text-shadow:0 0 20px rgba(99,102,241,0.5);
+.pcard h3{
+  font-family:var(--display);font-size:20px;font-weight:600;
+  letter-spacing:-.4px;margin-bottom:10px;line-height:1.25;
 }
-
-.hero p{
-margin-top:20px;
-color:#94a3b8;
-font-size:18px;
-max-width:650px;
-margin-left:auto;
-margin-right:auto;
-}
-
-.hero button{
-margin-top:40px;
-padding:14px 30px;
-border:none;
-border-radius:30px;
-background:linear-gradient(90deg,#6366f1,#3b82f6);
-color:white;
-font-size:16px;
-cursor:pointer;
-box-shadow:0 0 25px rgba(99,102,241,.6);
-transition:.3s;
-}
-
-.hero button:hover{
-transform:scale(1.05);
-}
-
-/* socials */
-
-.socials{
-margin-top:35px;
-display:flex;
-justify-content:center;
-gap:25px;
-}
-
-.socials a{
-font-size:22px;
-color:#94a3b8;
-transition:.3s;
-}
-
-.socials a:hover{
-color:#6366f1;
-transform:scale(1.2);
-}
-
-/* sections */
-
-section{
-padding:90px 10%;
-}
-
-section h2{
-text-align:center;
-font-size:40px;
-margin-bottom:60px;
-}
-
-/* projects */
-
-.projects{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
-gap:40px;
-max-width:1100px;
-margin:auto;
-}
-
-.card{
-background:rgba(30,41,59,0.35);
-border:1px solid rgba(255,255,255,0.08);
-border-radius:20px;
-padding:35px;
-text-decoration:none;
-color:white;
-transition:.4s;
-cursor:pointer;
-
-height:220px;
-
-display:flex;
-flex-direction:column;
-justify-content:center;
-}
-.card::before{
-content:"";
-position:absolute;
-inset:0;
-border-radius:20px;
-background:linear-gradient(120deg,transparent,#6366f1,transparent);
-opacity:0;
-transition:0.4s;
-}
-.card::after{
-content:"";
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:radial-gradient(circle at var(--x) var(--y),
-rgba(99,102,241,0.25),
-transparent 40%);
-opacity:0;
-transition:opacity .3s;
-pointer-events:none;
-}
-
-.card:hover::after{
-opacity:1;
-}
-.card{
-position:relative;
-overflow:hidden;
-}
-
-.card:hover::before{
-opacity:0.25;
-}
-
-.card:hover{
-transform:translateY(-8px) scale(1.02);
-box-shadow:0 0 35px rgba(99,102,241,0.5);
-}
-
-
-.card h3{
-color:#60a5fa;
-margin-bottom:10px;
-font-size:20px;
-}
-
-.card p{
-color:#cbd5f5;
-font-size:14px;
-}
-
+.pcard p{font-size:14.5px;color:var(--muted);line-height:1.65;flex:1;}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px;}
 .tag{
-display:inline-block;
-background:#020617;
-padding:5px 12px;
-border-radius:12px;
-font-size:12px;
-margin:6px 6px 0 0;
-border:1px solid rgba(255,255,255,0.1);
-white-space:nowrap;
+  font-family:var(--mono);font-size:11px;color:var(--muted);
+  border:1px solid var(--line);border-radius:5px;padding:4px 9px;
+}
+.pcard-cta{
+  font-family:var(--mono);font-size:12.5px;color:var(--accent);
+  margin-top:20px;padding-top:18px;border-top:1px solid var(--line);
 }
 
-.tag:hover{
-border-color:#6366f1;
-color:#6366f1;
+/* ---------- timeline ---------- */
+.timeline{position:relative;padding-left:32px;max-width:860px;}
+.timeline::before{
+  content:"";position:absolute;left:5px;top:10px;bottom:10px;width:1px;
+  background:linear-gradient(var(--accent),var(--accent-2),transparent);
 }
-.tags{
-margin-top:10px;
+.tl-item{position:relative;margin-bottom:46px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{
+  position:absolute;left:-32px;top:7px;width:11px;height:11px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--accent);
 }
-/* certificates */
+.tl-item.past .tl-dot{border-color:var(--dim);}
+.tl-date{font-family:var(--mono);font-size:12px;color:var(--accent);margin-bottom:6px;}
+.tl-item.past .tl-date{color:var(--dim);}
+.tl-item h3{font-family:var(--display);font-size:19px;font-weight:600;margin-bottom:4px;letter-spacing:-.3px;}
+.tl-org{font-size:13.5px;color:var(--muted);margin-bottom:12px;}
+.tl-item p{font-size:14.5px;color:var(--muted);line-height:1.7;}
+.tl-item ul{margin:12px 0 0 0;padding-left:18px;}
+.tl-item li{font-size:14.5px;color:var(--muted);line-height:1.7;margin-bottom:6px;}
+.tl-item li strong{color:var(--text);font-weight:500;}
 
-.cert-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
+/* ---------- skills ---------- */
+.skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px;}
+.skill-card{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:14px;padding:28px;
 }
-
-/* contact */
-
-.contact{
-text-align:center;
-line-height:2;
+.skill-card h3{
+  font-family:var(--display);font-size:17px;font-weight:600;
+  margin-bottom:6px;letter-spacing:-.2px;
 }
+.skill-card .lvl{font-family:var(--mono);font-size:11.5px;color:var(--accent);margin-bottom:16px;}
+.skill-card .lvl.foundational{color:var(--warn);}
+.skill-card p{font-size:14px;color:var(--muted);line-height:1.7;}
 
-.contact a{
-color:#60a5fa;
-text-decoration:none;
-}
-
-
-
-.contact-item{
-display:flex;
-align-items:center;
-justify-content:center;
-gap:12px;
-font-size:16px;
-}
-
-.contact-item i{
-color:#6366f1;
-font-size:18px;
-}
-
-.contact-item a{
-color:#cbd5f5;
-text-decoration:none;
-transition:.3s;
+.toolbelt{margin-top:50px;padding-top:36px;border-top:1px solid var(--line);}
+.toolbelt h3{font-family:var(--mono);font-size:12.5px;color:var(--dim);margin-bottom:20px;letter-spacing:.6px;}
+.tool-row{display:flex;flex-wrap:wrap;gap:9px;}
+.tool-chip{
+  font-family:var(--mono);font-size:12.5px;color:var(--text);
+  background:var(--surface-2);border:1px solid var(--line);
+  border-radius:6px;padding:8px 14px;
 }
 
-.contact-item a:hover{
-color:#60a5fa;
+/* ---------- certs ---------- */
+.cert-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px;}
+.cert{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:12px;padding:24px;display:flex;gap:16px;align-items:flex-start;
 }
-.contact-item{
-opacity:.85;
+.cert i{color:var(--accent);font-size:17px;margin-top:3px;}
+.cert h3{font-family:var(--display);font-size:15.5px;font-weight:600;margin-bottom:4px;line-height:1.35;}
+.cert span{font-family:var(--mono);font-size:11.5px;color:var(--dim);}
+
+/* ---------- contact ---------- */
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+.contact-lead{font-family:var(--display);font-size:clamp(24px,3.2vw,34px);font-weight:600;letter-spacing:-1px;line-height:1.25;margin-bottom:20px;}
+.contact-lead em{font-style:italic;color:var(--accent);}
+.contact-copy{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:30px;}
+.status-lines{font-family:var(--mono);font-size:13px;color:var(--muted);line-height:2.1;}
+.status-lines .bullet{color:var(--accent);}
+.contact-links{display:flex;flex-direction:column;gap:11px;}
+.clink{
+  display:flex;align-items:center;gap:15px;
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:10px;padding:17px 20px;text-decoration:none;transition:.2s;
 }
+.clink:hover{border-color:rgba(61,220,151,.45);transform:translateX(3px);}
+.clink i{color:var(--accent);font-size:16px;width:18px;}
+.clink-label{font-family:var(--mono);font-size:11px;color:var(--dim);display:block;}
+.clink-val{font-size:14.5px;color:var(--text);}
 
-.contact-item:hover{
-opacity:1;
-transform:scale(1.03);
-transition:.2s;
-}
-
-/* footer */
-
+/* ---------- footer ---------- */
 footer{
-text-align:center;
-padding:30px;
-margin-top:40px;
-border-top:1px solid rgba(255,255,255,.08);
-color:#94a3b8;
+  padding:36px 6vw;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:16px;max-width:1180px;margin:0 auto;
 }
+footer p{font-family:var(--mono);font-size:12.5px;color:var(--dim);}
+.footer-socials{display:flex;gap:20px;}
+.footer-socials a{color:var(--muted);font-size:17px;transition:.2s;}
+.footer-socials a:hover{color:var(--accent);}
 
-/* modal */
-
+/* ---------- modal ---------- */
 .modal{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.85);
-opacity:0;
-pointer-events:none;
-transition:.3s;
+  position:fixed;inset:0;z-index:300;
+  background:rgba(4,7,12,.9);backdrop-filter:blur(6px);
+  opacity:0;pointer-events:none;transition:opacity .25s;
+  overflow-y:auto;padding:60px 20px;
 }
-
-.modal:target{
-opacity:1;
-pointer-events:auto;
+.modal:target{opacity:1;pointer-events:auto;}
+.modal-box{
+  background:var(--surface);border:1px solid var(--line-strong);
+  border-radius:16px;max-width:760px;margin:0 auto;padding:44px;position:relative;
 }
-
-.modal-content{
-background:#020617;
-width:700px;
-max-width:90%;
-margin:80px auto;
-padding:30px;
-border-radius:15px;
-position:relative;
-
-max-height:80vh;
-overflow-y:auto;
+.modal-box h2{
+  font-family:var(--display);font-size:27px;font-weight:600;
+  letter-spacing:-.8px;margin-bottom:8px;line-height:1.2;padding-right:40px;
 }
-.modal-content h3{
-margin-top:18px;
-color:#60a5fa;
-font-size:16px;
+.modal-meta{font-family:var(--mono);font-size:12px;color:var(--dim);margin-bottom:28px;}
+.modal-box h3{
+  font-family:var(--mono);font-size:12px;color:var(--accent);
+  letter-spacing:.7px;margin:26px 0 9px;
 }
-
-.modal-content p{
-font-size:14px;
-color:#cbd5f5;
-line-height:1.6;
-}
-
-.modal-content::-webkit-scrollbar{
-width:6px;
-}
-
-.modal-content::-webkit-scrollbar-thumb{
-background:#6366f1;
-border-radius:10px;
-}
-
-.modal-content::-webkit-scrollbar-track{
-background:transparent;
-}
+.modal-box p{font-size:15px;color:var(--muted);line-height:1.75;}
+.modal-box ul{margin:8px 0 0 0;padding-left:19px;}
+.modal-box li{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:7px;}
+.modal-box li strong{color:var(--text);font-weight:500;}
 .close{
-position:absolute;
-right:20px;
-top:10px;
-font-size:28px;
-text-decoration:none;
-color:white;
+  position:absolute;right:20px;top:16px;font-size:30px;line-height:1;
+  color:var(--muted);text-decoration:none;transition:.2s;
+}
+.close:hover{color:var(--text);}
+.shot{width:100%;margin-top:18px;border-radius:9px;border:1px solid var(--line);display:block;}
+.caption{font-size:12.5px;color:var(--dim);margin-top:8px;font-style:italic;}
+.repo-btn{
+  display:inline-block;margin-top:26px;font-family:var(--mono);font-size:13px;
+  border:1px solid var(--accent);color:var(--accent);
+  padding:11px 20px;border-radius:7px;text-decoration:none;transition:.2s;
+}
+.repo-btn:hover{background:var(--accent);color:#04120C;}
+.note{
+  font-family:var(--mono);font-size:12px;color:var(--warn);
+  background:rgba(245,165,36,.07);border:1px solid rgba(245,165,36,.22);
+  border-radius:8px;padding:13px 16px;margin-top:26px;line-height:1.65;
 }
 
-.github-btn{
-display:inline-block;
-margin-top:20px;
-padding:10px 18px;
-background:linear-gradient(90deg,#6366f1,#3b82f6);
-border-radius:20px;
-text-decoration:none;
-color:white;
+/* ---------- a11y + responsive ---------- */
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px;}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;}
+  html{scroll-behavior:auto;}
 }
-
-.reveal{
-opacity:0;
-transform:translateY(40px);
-transition:all 0.8s ease;
+@media(max-width:880px){
+  .contact-wrap{grid-template-columns:1fr;gap:38px;}
 }
-
-.reveal.active{
-opacity:1;
-transform:translateY(0);
-}
-.hero h1,
-section h2,
-nav h2{
-font-family:'Space Grotesk',sans-serif;
-font-weight:400;
-letter-spacing:0.5px;
-}
-.contact-links{
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-gap:18px;
-margin-top:30px;
-text-align:center;
-}  
-
-.project-ss{
-width:100%;
-margin-top:18px;
-border-radius:10px;
-border:1px solid rgba(255,255,255,0.08);
-}
-
-.project-caption{
-font-size:13px;
-color:#94a3b8;
-margin-top:6px;
-margin-bottom:10px;
-}
-
-#skills .card{
-min-height:150px;
+@media(max-width:720px){
+  section{padding:74px 6vw;}
+  .nav-links{
+    display:none;position:absolute;top:100%;left:0;right:0;
+    flex-direction:column;gap:0;align-items:stretch;
+    background:var(--bg);border-bottom:1px solid var(--line);padding:10px 6vw 20px;
+  }
+  .nav-links.open{display:flex;}
+  .nav-links li{padding:11px 0;}
+  .menu-toggle{display:block;}
+  .hero h1{letter-spacing:-2px;}
+  .modal-box{padding:30px 24px;}
+  .modal{padding:30px 14px;}
 }
 </style>
 </head>
-
 <body>
 
+<div class="bg-grid"></div>
+<div class="bg-glow a"></div>
+<div class="bg-glow b"></div>
+
 <nav>
-<h2>Tanisha Sagar | Portfolio</h2>
-
-<ul>
-<li><a href="#">Home</a></li>
-<li><a href="#projects">Projects</a></li>
-<li><a href="#certificates">Certificates</a></li>
-<li><a href="#contact">Contact</a></li>
-<li><a class="resume-btn" href="Tanisha_Sagar_Resume.pdf" download>Download Resume</a></li>
-</ul>
-
+  <a href="#" class="brand">tanisha<span>·</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a class="cv-btn" href="Tanisha_Sagar_Resume.pdf" download>Download CV</a></li>
+  </ul>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">&#9776;</button>
 </nav>
 
-<section class="hero">
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="status-pill"><span class="pulse"></span> Open to cybersecurity / SOC trainee roles</div>
 
-<h1>Hi, I'm <span>Tanisha Sagar</span></h1>
+  <h1>Tanisha Sagar</h1>
 
-<p>
-Cybersecurity enthusiast focused on threat detection, log analysis, and system monitoring.
-</p>
+  <p class="hero-role">Penetration Testing &nbsp;·&nbsp; Threat Intelligence &nbsp;·&nbsp; SOC Fundamentals</p>
 
-<button onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
-View My Work
-</button>
+  <p class="hero-copy">
+    I break things carefully and write down exactly how. Two cybersecurity internships:
+    one running an <strong>authorized penetration test on live production infrastructure</strong>,
+    one building <strong>Python detection and threat-intel tooling</strong>.
+    Google Cybersecurity Professional Certificate and CCNA certified.
+  </p>
 
-<div class="socials">
+  <div class="hero-actions">
+    <a href="#work" class="btn-primary">See my work</a>
+    <a href="#contact" class="btn-ghost">Get in touch</a>
+  </div>
 
-<a href="https://github.com/tanishasagar" target="_blank">
-<i class="fa-brands fa-github"></i>
-</a>
-
-<a href="https://www.linkedin.com/in/tanishasagar20" target="_blank">
-<i class="fa-brands fa-linkedin"></i>
-</a>
-
-<a href="mailto:thetanishasagar@gmail.com">
-<i class="fa-solid fa-envelope"></i>
-</a>
-
-</div>
-
+  <div class="stats">
+    <div>
+      <div class="stat-num">12</div>
+      <div class="stat-label">PENTEST TASKS COMPLETED</div>
+    </div>
+    <div>
+      <div class="stat-num">15<em>+</em></div>
+      <div class="stat-label">SECURITY TOOLS USED</div>
+    </div>
+    <div>
+      <div class="stat-num">2</div>
+      <div class="stat-label">CYBERSECURITY INTERNSHIPS</div>
+    </div>
+    <div>
+      <div class="stat-num">5</div>
+      <div class="stat-label">PROJECTS BUILT</div>
+    </div>
+  </div>
 </section>
 
-<section id="projects" class="reveal">
-<h2>Cybersecurity Projects</h2>
+<!-- WORK -->
+<section id="work">
+  <span class="eyebrow">01 — Work</span>
+  <h2 class="section-title">Projects &amp; engagements</h2>
+  <p class="section-sub">
+    Security work from my internships and personal builds. Open any card for the problem,
+    the approach, the tools, and what actually came out of it.
+  </p>
 
-<div class="projects">
+  <div class="filters">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="pentest">Penetration Testing</button>
+    <button class="filter-btn" data-filter="intel">Threat Intelligence</button>
+    <button class="filter-btn" data-filter="detection">Detection &amp; Monitoring</button>
+  </div>
 
-<a href="#threat_intelligence_aggregator" class="card reveal">
-<h3>Threat Intelligence Aggregator</h3>
-<p>Aggregates threat feeds and extracts IOCs.</p>
-<div class="tags">
-<span class="tag">Python</span>
-<span class="tag">Threat Intel</span>
-</div>
-</a>
+  <div class="projects" id="projectGrid">
 
-<a href="#pdf_malware_analysis" class="card">
-<h3>PDF Malware Analysis</h3>
-<p>Static & dynamic malware analysis of malicious PDFs.</p>
+    <a href="#m-pentest" class="pcard" data-cat="pentest">
+      <div class="pcard-meta">UptoSkills · Apr – Jul 2026 · Live infrastructure</div>
+      <h3>Authorized Penetration Test</h3>
+      <p>
+        A 12-task engagement against live production infrastructure, run end to end:
+        reconnaissance and OSINT, scanning, exploitation testing, then automation.
+        Every phase reported and defended in a live viva.
+      </p>
+      <div class="tags">
+        <span class="tag">Nmap</span><span class="tag">OWASP ZAP</span>
+        <span class="tag">SQLMap</span><span class="tag">Nuclei</span>
+        <span class="tag">OSINT</span>
+      </div>
+      <div class="pcard-cta">Open case study →</div>
+    </a>
 
-<div class="tags">
-<span class="tag">Malware</span>
-<span class="tag">Sandbox</span>
-</div>
+    <a href="#m-intel" class="pcard" data-cat="intel">
+      <div class="pcard-meta">Unified Mentor · Python · IOC pipeline</div>
+      <h3>Threat Intelligence Aggregator</h3>
+      <p>
+        Threat feeds arrive as TXT, CSV and JSON and nothing lines up. This tool parses all
+        three, normalizes indicators, correlates them across sources, and scores severity by
+        how many feeds agree.
+      </p>
+      <div class="tags">
+        <span class="tag">Python</span><span class="tag">Regex</span>
+        <span class="tag">IOC Correlation</span>
+      </div>
+      <div class="pcard-cta">Open case study →</div>
+    </a>
 
-</a>
+    <a href="#m-pdf" class="pcard" data-cat="intel">
+      <div class="pcard-meta">Unified Mentor · Static + dynamic analysis</div>
+      <h3>PDF Malware Analysis</h3>
+      <p>
+        Malicious PDFs hide JavaScript and auto-execution triggers that fire the moment the
+        file opens. Pulled them apart statically with PDFID and pdf-parser, then detonated a
+        sample in a sandbox to watch the real behaviour.
+      </p>
+      <div class="tags">
+        <span class="tag">PDFID</span><span class="tag">pdf-parser</span>
+        <span class="tag">ANY.RUN</span>
+      </div>
+      <div class="pcard-cta">Open case study →</div>
+    </a>
 
-<a href="#windows_process_monitoring" class="card">
-<h3>Windows Registry Monitoring</h3>
-<p>Detects suspicious Windows registry persistence changes.</p>
-<div class="tags">
-<span class="tag">Windows</span>
-<span class="tag">Python</span>
-</div>
-</a>
+    <a href="#m-registry" class="pcard" data-cat="detection">
+      <div class="pcard-meta">Unified Mentor · Python · Windows</div>
+      <h3>Windows Registry Monitoring</h3>
+      <p>
+        Malware loves Run and RunOnce keys because they survive a reboot. This monitor keeps a
+        baseline of trusted registry values and flags anything new, modified or deleted against it.
+      </p>
+      <div class="tags">
+        <span class="tag">Python</span><span class="tag">winreg</span>
+        <span class="tag">Persistence</span>
+      </div>
+      <div class="pcard-cta">Open case study →</div>
+    </a>
 
-<a href="#windows_service_process_monitoring" class="card">
-<h3>Windows Service & Process Monitoring Agent</h3>
-<p>Detects suspicious Windows processes and services.</p>
-<div class="tags">
-<span class="tag">SOC</span>
-<span class="tag">Python</span>
-</div>
-</a>
+    <a href="#m-process" class="pcard" data-cat="detection">
+      <div class="pcard-meta">Unified Mentor · Python · PowerShell</div>
+      <h3>Process &amp; Service Monitoring Agent</h3>
+      <p>
+        Attackers hide inside processes that look legitimate. This agent walks parent-child
+        relationships, catches execution from user-writable directories, and sorts alerts by
+        severity the way a SOC queue would.
+      </p>
+      <div class="tags">
+        <span class="tag">psutil</span><span class="tag">PowerShell (WMI)</span>
+        <span class="tag">SOC-style alerting</span>
+      </div>
+      <div class="pcard-cta">Open case study →</div>
+    </a>
 
-</div>
+    <a href="#m-phishing" class="pcard" data-cat="detection">
+      <div class="pcard-meta">Galgotias University · Capstone · Group project</div>
+      <h3>Phishing Detection with ML</h3>
+      <p>
+        A web-based phishing detector that classifies malicious URLs using machine learning,
+        built as a final-year capstone with a team.
+      </p>
+      <div class="tags">
+        <span class="tag">Python</span><span class="tag">Machine Learning</span>
+        <span class="tag">Web</span>
+      </div>
+      <div class="pcard-cta">Open case study →</div>
+    </a>
 
+  </div>
 </section>
 
-<section id="certificates" class="reveal">
-<h2>Certifications</h2>
+<!-- EXPERIENCE -->
+<section id="experience">
+  <span class="eyebrow">02 — Path</span>
+  <h2 class="section-title">Experience &amp; education</h2>
+  <p class="section-sub">Where the hands-on work actually happened.</p>
 
-<div class="cert-grid">
+  <div class="timeline">
 
-<div class="card">
-<h3>Google Cybersecurity Professional Certificate</h3>
-<p>Coursera</p>
-</div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">Apr 2026 – Jul 2026 · Completed</div>
+      <h3>Cybersecurity Intern</h3>
+      <p class="tl-org">UptoSkills · Remote</p>
+      <ul>
+        <li>Ran an <strong>authorized penetration test on live production infrastructure</strong> across 12 structured tasks.</li>
+        <li>Covered the full chain: reconnaissance and OSINT, vulnerability scanning, exploitation testing, and multi-tool automation.</li>
+        <li>Found real exposure, including <strong>publicly reachable monitoring dashboards</strong> and information disclosure through response headers.</li>
+        <li>Wrote a structured report per tool and defended each one in a live viva with supervisor review.</li>
+      </ul>
+    </div>
 
-<div class="card">
-<h3>Cisco Networking Basics</h3>
-<p>Cisco Networking Academy</p>
-</div>
+    <div class="tl-item past">
+      <div class="tl-dot"></div>
+      <div class="tl-date">Nov 2025 – Feb 2026 · Completed</div>
+      <h3>Cybersecurity Intern</h3>
+      <p class="tl-org">Unified Mentor · Remote</p>
+      <ul>
+        <li>Built a Python threat intelligence aggregator that normalizes IOCs (IPs, domains, URLs, hashes) across multiple feeds.</li>
+        <li>Performed static and dynamic analysis of malicious PDF samples to surface embedded scripts and runtime behaviour.</li>
+        <li>Wrote monitoring scripts for Windows registry changes and running processes to catch abnormal system activity.</li>
+      </ul>
+    </div>
 
-</div>
+    <div class="tl-item past">
+      <div class="tl-dot"></div>
+      <div class="tl-date">2022 – 2026</div>
+      <h3>B.Sc. (Hons.) Computer Science, Cybersecurity specialisation</h3>
+      <p class="tl-org">Galgotias University, Greater Noida · CGPA 8.2</p>
+      <p>Network Security · Cryptography · Computer Networks · Operating Systems · Python · Data Structures</p>
+    </div>
 
+  </div>
 </section>
 
+<!-- SKILLS -->
 <section id="skills">
+  <span class="eyebrow">03 — Stack</span>
+  <h2 class="section-title">What I can actually do</h2>
+  <p class="section-sub">
+    Labelled honestly. Hands-on means I've used it on a real target or built with it;
+    foundational means coursework and labs, not production time.
+  </p>
 
-<h2>Technical Skills</h2>
+  <div class="skill-grid">
 
-<div class="projects">
+    <div class="skill-card">
+      <h3>Penetration Testing</h3>
+      <div class="lvl">Hands-on · Live engagement</div>
+      <p>Reconnaissance, scanning, enumeration and exploitation testing against real infrastructure. Comfortable picking the right tool for a phase and documenting what it found, including when the honest answer is "nothing exploitable here."</p>
+    </div>
 
-<div class="card">
-<h3>Security Operations</h3>
-<p>Threat Detection, Incident Response, SIEM Concepts, IDS/IPS (Suricata)</p>
-</div>
+    <div class="skill-card">
+      <h3>OSINT &amp; Reconnaissance</h3>
+      <div class="lvl">Hands-on · Live engagement</div>
+      <p>Mapping external attack surface and subdomains using Shodan, Censys, Google Dorking, Wappalyzer, Masscan, TheHarvester and the Wayback Machine.</p>
+    </div>
 
-<div class="card">
-<h3>Programming</h3>
-<p>Python (Automation, Log Parsing), Bash, SQL</p>
-</div>
+    <div class="skill-card">
+      <h3>Threat Intelligence &amp; Malware Analysis</h3>
+      <div class="lvl">Hands-on · Built tooling</div>
+      <p>IOC normalization and cross-feed correlation, plus static and dynamic analysis of suspicious files using PDFID, pdf-parser and sandbox detonation.</p>
+    </div>
 
-<div class="card">
-<h3>Networking</h3>
-<p>TCP/IP, DNS, ARP, HTTP/HTTPS, Packet Analysis, Wireshark</p>
-</div>
+    <div class="skill-card">
+      <h3>Detection &amp; Monitoring</h3>
+      <div class="lvl">Hands-on · Built tooling</div>
+      <p>Python agents for Windows registry persistence detection and process/service anomaly monitoring, with baseline comparison and severity-ranked alerting.</p>
+    </div>
 
-<div class="card">
-<h3>Systems</h3>
-<p>Linux Administration, Windows Security Monitoring</p>
-</div>
+    <div class="skill-card">
+      <h3>Log Analysis, SIEM &amp; Incident Response</h3>
+      <div class="lvl foundational">Foundational · Labs &amp; coursework</div>
+      <p>Log analysis, event correlation, incident response playbooks and SIEM concepts through the Google Cybersecurity Professional Certificate lab environment. No production SIEM platform time yet.</p>
+    </div>
 
-</div>
+    <div class="skill-card">
+      <h3>Networking &amp; Systems</h3>
+      <div class="lvl">Hands-on · CCNA certified</div>
+      <p>TCP/IP, DNS, routing and switching, firewall and IDS/IPS fundamentals. Daily driver experience with Kali Linux in VirtualBox, plus Windows security monitoring.</p>
+    </div>
 
+  </div>
+
+  <div class="toolbelt">
+    <h3>TOOLBELT</h3>
+    <div class="tool-row">
+      <span class="tool-chip">Nmap</span><span class="tool-chip">Nikto</span>
+      <span class="tool-chip">Gobuster</span><span class="tool-chip">OWASP ZAP</span>
+      <span class="tool-chip">Burp Suite</span><span class="tool-chip">SQLMap</span>
+      <span class="tool-chip">XSStrike</span><span class="tool-chip">Nuclei</span>
+      <span class="tool-chip">Sn1per</span><span class="tool-chip">TheHarvester</span>
+      <span class="tool-chip">Masscan</span><span class="tool-chip">Shodan</span>
+      <span class="tool-chip">Censys</span><span class="tool-chip">Wappalyzer</span>
+      <span class="tool-chip">Kali Linux</span><span class="tool-chip">Python</span>
+      <span class="tool-chip">Bash</span><span class="tool-chip">SQL</span>
+      <span class="tool-chip">PowerShell</span><span class="tool-chip">ANY.RUN</span>
+    </div>
+  </div>
 </section>
-  
-<section id="contact" class="reveal">
 
-<h2>Contact</h2>
+<!-- CERTS -->
+<section id="certs">
+  <span class="eyebrow">04 — Credentials</span>
+  <h2 class="section-title">Certifications</h2>
+  <p class="section-sub">Plus SQL injection labs on PortSwigger Web Security Academy and foundational labs on TryHackMe.</p>
 
-<div class="contact-card">
+  <div class="cert-list">
+    <div class="cert">
+      <i class="fa-solid fa-certificate"></i>
+      <div><h3>Google Cybersecurity Professional Certificate</h3><span>Coursera · 2025</span></div>
+    </div>
+    <div class="cert">
+      <i class="fa-solid fa-certificate"></i>
+      <div><h3>Cisco Certified Network Associate (CCNA)</h3><span>Cisco · 2025</span></div>
+    </div>
+    <div class="cert">
+      <i class="fa-solid fa-certificate"></i>
+      <div><h3>Network Security</h3><span>Cisco · 2026</span></div>
+    </div>
+    <div class="cert">
+      <i class="fa-solid fa-certificate"></i>
+      <div><h3>Introduction to Cybersecurity</h3><span>Cisco Networking Academy · 2025</span></div>
+    </div>
+    <div class="cert">
+      <i class="fa-solid fa-certificate"></i>
+      <div><h3>Python for Data Science</h3><span>IBM · 2023</span></div>
+    </div>
+  </div>
+</section>
 
-<div class="contact-item">
-<i class="fa-solid fa-envelope"></i>
-<a href="mailto:thetanishasagar@gmail.com">thetanishasagar@gmail.com</a>
-</div>
+<!-- CONTACT -->
+<section id="contact">
+  <span class="eyebrow">05 — Contact</span>
+  <h2 class="section-title">Let's talk</h2>
 
-<div class="contact-item">
-<i class="fa-brands fa-github"></i>
-<a href="https://github.com/tanishasagar" target="_blank">github.com/tanishasagar</a>
-</div>
+  <div class="contact-wrap">
+    <div>
+      <p class="contact-lead">Hiring for a role where <em>curiosity is the job?</em></p>
+      <p class="contact-copy">
+        I'm looking for entry-level cybersecurity and SOC trainee roles where I can put this
+        foundation to work on threat detection and incident response. Send a real note and
+        you'll get a real reply.
+      </p>
+      <div class="status-lines">
+        <span class="bullet">●</span> Status: open to full-time roles<br>
+        <span class="bullet">●</span> Location: New Delhi, India · Remote OK<br>
+        <span class="bullet">●</span> Response time: within 24 hours
+      </div>
+    </div>
 
-<div class="contact-item">
-<i class="fa-brands fa-linkedin"></i>
-<a href="https://linkedin.com/in/tanishasagar20" target="_blank">linkedin.com/in/tanishasagar20</a>
-</div>
-
-</div>
-
+    <div class="contact-links">
+      <a class="clink" href="mailto:thetanishasagar@gmail.com">
+        <i class="fa-solid fa-envelope"></i>
+        <span><span class="clink-label">EMAIL</span><span class="clink-val">thetanishasagar@gmail.com</span></span>
+      </a>
+      <a class="clink" href="https://www.linkedin.com/in/tanishasagar20" target="_blank" rel="noopener">
+        <i class="fa-brands fa-linkedin"></i>
+        <span><span class="clink-label">LINKEDIN</span><span class="clink-val">in/tanishasagar20</span></span>
+      </a>
+      <a class="clink" href="https://github.com/tanishasagar" target="_blank" rel="noopener">
+        <i class="fa-brands fa-github"></i>
+        <span><span class="clink-label">GITHUB</span><span class="clink-val">github.com/tanishasagar</span></span>
+      </a>
+      <a class="clink" href="Tanisha_Sagar_Resume.pdf" download>
+        <i class="fa-solid fa-file-arrow-down"></i>
+        <span><span class="clink-label">RESUME</span><span class="clink-val">Download PDF</span></span>
+      </a>
+    </div>
+  </div>
 </section>
 
 <footer>
-<p>© 2026 Tanisha Sagar</p>
+  <p>© 2026 Tanisha Sagar</p>
+  <div class="footer-socials">
+    <a href="https://github.com/tanishasagar" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/tanishasagar20" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+    <a href="mailto:thetanishasagar@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+  </div>
 </footer>
 
+<!-- ===== MODALS ===== -->
 
-<!-- Project Modals -->
+<div id="m-pentest" class="modal">
+  <div class="modal-box">
+    <a href="#work" class="close">&times;</a>
+    <h2>Authorized Penetration Test</h2>
+    <div class="modal-meta">UptoSkills · Apr – Jul 2026 · 12 structured tasks</div>
 
-<div id="threat_intelligence_aggregator" class="modal">
-<div class="modal-content">
+    <h3>PROBLEM</h3>
+    <p>UptoSkills needed an authorized security assessment of its live production infrastructure, spanning the main web application and several connected subdomains, to find real exposure before someone else did.</p>
 
-<a href="#projects" class="close">&times;</a>
+    <h3>APPROACH</h3>
+    <p>Worked through four phases across 12 tasks, one tool per task, each with its own structured report and a live viva defence:</p>
+    <ul>
+      <li><strong>Reconnaissance &amp; OSINT</strong> — Masscan, Shodan, Censys, Wappalyzer, Google Dorking, Wayback Machine, TheHarvester</li>
+      <li><strong>Scanning &amp; enumeration</strong> — Nmap, Nikto, Gobuster, OWASP ZAP</li>
+      <li><strong>Exploitation testing</strong> — SQLMap, XSStrike, Burp Suite</li>
+      <li><strong>Automation</strong> — Nuclei, Sn1per</li>
+    </ul>
 
-<h2>Threat Intelligence Aggregator</h2>
+    <h3>RESULT</h3>
+    <p>Identified and responsibly reported real security issues, including publicly reachable monitoring dashboards and information disclosure through HTTP response headers. Each finding was documented with reproduction steps and severity, then presented to and questioned by a supervisor.</p>
 
-<h3>Problem</h3>
-<p>
-Threat intelligence feeds are often distributed across multiple formats
-(TXT, CSV, JSON) making manual correlation difficult and time-consuming
-for security analysts.
-</p>
+    <h3>WHAT I TOOK FROM IT</h3>
+    <p>Running a tool is the easy part. The harder skills were reading output critically enough to reject my own false positives, and being able to defend a finding out loud when someone pushes back on it.</p>
 
-<h3>Approach</h3>
-<p>
-Developed a Python-based aggregation tool that parses multiple threat
-feeds, normalizes indicators (IP, domain, URL, hash), correlates them
-across sources, and assigns severity based on cross-feed occurrence.
-</p>
-
-<h3>Tools Used</h3>
-<p>
-Python, Regex, CSV/JSON parsing, Command Line, Visual Studio Code
-</p>
-
-<h3>Result</h3>
-<p>
-Successfully generated normalized IOC datasets and identified high-risk
-indicators appearing across multiple threat intelligence sources.
-</p>
-
-<img src="images/normalized_ioc.jpg" class="project-ss">
-<p class="project-caption">
-Normalized IOC dataset generated from multiple threat feeds.
-</p>
-
-<img src="images/high_risk_ioc.jpg" class="project-ss">
-<p class="project-caption">
-High-risk IOC detection highlighting malicious domains and IP addresses.
-</p>
-
-<a class="github-btn"
-href="https://github.com/tanishasagar/Threat_Intel_Aggregator"
-target="_blank">
-View on GitHub
-</a>
-
-</div>
+    <div class="note">Findings are confidential to the client, so specific hosts, IPs and unpatched issues aren't published here. Happy to walk through methodology in an interview.</div>
+  </div>
 </div>
 
+<div id="m-intel" class="modal">
+  <div class="modal-box">
+    <a href="#work" class="close">&times;</a>
+    <h2>Threat Intelligence Aggregator</h2>
+    <div class="modal-meta">Unified Mentor · Python</div>
 
-<div id="pdf_malware_analysis" class="modal">
-<div class="modal-content">
+    <h3>PROBLEM</h3>
+    <p>Threat intelligence feeds are spread across TXT, CSV and JSON with inconsistent formatting, which makes manual correlation slow and error-prone for an analyst.</p>
 
-<a href="#projects" class="close">&times;</a>
+    <h3>APPROACH</h3>
+    <p>Built a Python aggregation tool that parses multiple feed formats, normalizes indicators (IP, domain, URL, hash) into one schema, correlates them across sources, and assigns severity based on how many independent feeds report the same indicator.</p>
 
-<h2>PDF Malware Analysis</h2>
+    <h3>TOOLS</h3>
+    <p>Python · Regex · CSV/JSON parsing · Command line · VS Code</p>
 
-<h3>Problem</h3>
-<p>
-Malicious PDF files can embed JavaScript and automatic execution
-triggers, allowing attackers to execute hidden payloads when the
-document is opened.
-</p>
+    <h3>RESULT</h3>
+    <p>Produced clean normalized IOC datasets and surfaced high-risk indicators appearing across multiple feeds, which is a far stronger signal than any single source on its own.</p>
 
-<h3>Approach</h3>
-<p>
-Performed static analysis using PDFID and pdf-parser to identify
-suspicious elements, followed by dynamic sandbox analysis to observe
-runtime behavior, process activity, and network communication.
-</p>
+    <img src="images/normalized_ioc.jpg" class="shot" alt="Normalized IOC dataset output">
+    <p class="caption">Normalized IOC dataset generated from multiple threat feeds.</p>
 
-<h3>Tools Used</h3>
-<p>
-PDFID, pdf-parser.py, ANY.RUN Sandbox, Python, Windows Command Prompt
-</p>
+    <img src="images/high_risk_ioc.jpg" class="shot" alt="High-risk IOC detection output">
+    <p class="caption">High-risk IOC detection highlighting malicious domains and IP addresses.</p>
 
-<h3>Result</h3>
-<p>
-Identified embedded JavaScript, OpenAction triggers, abnormal process
-execution, and sandbox-confirmed malicious behavior in the analyzed PDF.
-</p>
-
-<img src="images/anyrun_sandbox.jpg" class="project-ss">
-<p class="project-caption">
-Dynamic malware analysis of the malicious PDF sample inside ANY.RUN sandbox.
-</p>
-
-<a class="github-btn"
-href="https://github.com/tanishasagar/PDF_Malware_Analysis"
-target="_blank">
-View on GitHub
-</a>
-
-</div>
+    <a class="repo-btn" href="https://github.com/tanishasagar/Threat_Intel_Aggregator" target="_blank" rel="noopener">View on GitHub</a>
+  </div>
 </div>
 
+<div id="m-pdf" class="modal">
+  <div class="modal-box">
+    <a href="#work" class="close">&times;</a>
+    <h2>PDF Malware Analysis</h2>
+    <div class="modal-meta">Unified Mentor · Static &amp; dynamic analysis</div>
 
-<div id="windows_process_monitoring" class="modal">
-<div class="modal-content">
+    <h3>PROBLEM</h3>
+    <p>Malicious PDFs embed JavaScript and automatic execution triggers that fire a hidden payload the moment the document is opened.</p>
 
-<a href="#projects" class="close">&times;</a>
+    <h3>APPROACH</h3>
+    <p>Static analysis with PDFID and pdf-parser to locate suspicious objects and triggers, followed by dynamic sandbox detonation to observe runtime behaviour, process activity and network calls.</p>
 
-<h2>Windows Registry Monitoring System</h2>
+    <h3>TOOLS</h3>
+    <p>PDFID · pdf-parser.py · ANY.RUN sandbox · Python · Windows</p>
 
-<h3>Problem</h3>
-<p>
-Malware frequently modifies Windows Registry keys such as Run and
-RunOnce to maintain persistence and execute automatically during
-system startup.
-</p>
+    <h3>RESULT</h3>
+    <p>Confirmed embedded JavaScript, OpenAction triggers, abnormal process execution, and sandbox-verified malicious behaviour in the analyzed sample.</p>
 
-<h3>Approach</h3>
-<p>
-Developed a Python-based monitoring system that creates a baseline of
-trusted registry values and continuously compares live registry states
-to detect new, modified, or deleted entries.
-</p>
+    <img src="images/anyrun_sandbox.jpg" class="shot" alt="ANY.RUN sandbox analysis of malicious PDF">
+    <p class="caption">Dynamic analysis of the malicious PDF sample inside the ANY.RUN sandbox.</p>
 
-<h3>Tools Used</h3>
-<p>
-Python, winreg module, Windows OS, Command Prompt, Visual Studio Code
-</p>
-
-<h3>Result</h3>
-<p>
-Successfully detected startup persistence attempts and Windows Defender
-policy modifications using baseline comparison and real-time monitoring.
-</p>
-
-<img src="images/registry_value_change.png" class="project-ss">
-<p class="project-caption">
-Registry value being monitored for suspicious persistence changes.
-</p>
-
-<img src="images/regsitry_change_detection.png" class="project-ss">
-<p class="project-caption">
-Command-line registry monitoring detecting unauthorized modification.
-</p>
-
-<a class="github-btn"
-href="https://github.com/tanishasagar/windows-registry-monitor"
-target="_blank">
-View on GitHub
-</a>
-
-</div>
+    <a class="repo-btn" href="https://github.com/tanishasagar/PDF_Malware_Analysis" target="_blank" rel="noopener">View on GitHub</a>
+  </div>
 </div>
 
+<div id="m-registry" class="modal">
+  <div class="modal-box">
+    <a href="#work" class="close">&times;</a>
+    <h2>Windows Registry Monitoring</h2>
+    <div class="modal-meta">Unified Mentor · Python · Windows</div>
 
-<div id="windows_service_process_monitoring" class="modal">
-<div class="modal-content">
+    <h3>PROBLEM</h3>
+    <p>Malware frequently modifies Run and RunOnce registry keys to persist and re-execute on every startup, and those changes are easy to miss by eye.</p>
 
-<a href="#projects" class="close">&times;</a>
+    <h3>APPROACH</h3>
+    <p>Built a Python monitor that captures a baseline of trusted registry values and continuously compares the live state against it, flagging new, modified or deleted entries.</p>
 
-<h2>Windows Service & Process Monitoring Agent</h2>
+    <h3>TOOLS</h3>
+    <p>Python · winreg module · Windows · VS Code</p>
 
-<h3>Problem</h3>
-<p>
-Attackers often abuse legitimate Windows processes and services to run
-malicious code or maintain persistence without detection.
-</p>
+    <h3>RESULT</h3>
+    <p>Detected startup persistence attempts and Windows Defender policy modifications through baseline comparison and real-time monitoring.</p>
 
-<h3>Approach</h3>
-<p>
-Built a monitoring agent that enumerates processes and services,
-analyzes parent-child relationships, detects execution from
-user-writable directories, and classifies alerts by severity.
-</p>
+    <img src="images/registry_value_change.png" class="shot" alt="Registry value change monitoring">
+    <p class="caption">Registry value being monitored for suspicious persistence changes.</p>
 
-<h3>Tools Used</h3>
-<p>
-Python, psutil library, PowerShell (WMI), Windows OS, Visual Studio Code
-</p>
+    <img src="images/regsitry_change_detection.png" class="shot" alt="Registry change detection output">
+    <p class="caption">Command-line registry monitoring detecting an unauthorized modification.</p>
 
-<h3>Result</h3>
-<p>
-Detected suspicious processes running from user directories and
-generated timestamped logs with severity-based alerts simulating
-SOC-style monitoring.
-</p>
-
-<img src="images/Detection_Logs.png" class="project-ss">
-<p class="project-caption">
-Detection logs identifying suspicious processes running from user directories.
-</p>
-
-<a class="github-btn"
-href="https://github.com/tanishasagar/windows-service-process-monitor"
-target="_blank">
-View on GitHub
-</a>
-
+    <a class="repo-btn" href="https://github.com/tanishasagar/windows-registry-monitor" target="_blank" rel="noopener">View on GitHub</a>
+  </div>
 </div>
+
+<div id="m-process" class="modal">
+  <div class="modal-box">
+    <a href="#work" class="close">&times;</a>
+    <h2>Process &amp; Service Monitoring Agent</h2>
+    <div class="modal-meta">Unified Mentor · Python · PowerShell</div>
+
+    <h3>PROBLEM</h3>
+    <p>Attackers abuse legitimate Windows processes and services to run malicious code and persist without standing out in a process list.</p>
+
+    <h3>APPROACH</h3>
+    <p>Built a monitoring agent that enumerates processes and services, analyzes parent-child relationships, detects execution from user-writable directories, and classifies alerts by severity.</p>
+
+    <h3>TOOLS</h3>
+    <p>Python · psutil · PowerShell (WMI) · Windows · VS Code</p>
+
+    <h3>RESULT</h3>
+    <p>Flagged suspicious processes running from user directories and produced timestamped, severity-ranked logs in the shape a SOC analyst would actually triage.</p>
+
+    <img src="images/Detection_Logs.png" class="shot" alt="Detection logs output">
+    <p class="caption">Detection logs identifying suspicious processes running from user directories.</p>
+
+    <a class="repo-btn" href="https://github.com/tanishasagar/windows-service-process-monitor" target="_blank" rel="noopener">View on GitHub</a>
+  </div>
 </div>
+
+<div id="m-phishing" class="modal">
+  <div class="modal-box">
+    <a href="#work" class="close">&times;</a>
+    <h2>Phishing Detection with Machine Learning</h2>
+    <div class="modal-meta">Galgotias University · Capstone · Group project</div>
+
+    <h3>PROBLEM</h3>
+    <p>Phishing URLs are cheap to generate and change constantly, so static blocklists fall behind almost immediately.</p>
+
+    <h3>APPROACH</h3>
+    <p>Built a web-based detection system as a final-year capstone with a team, using machine learning to classify URLs as malicious or legitimate from their structural features.</p>
+
+    <h3>TOOLS</h3>
+    <p>Python · Machine learning libraries · Web front end</p>
+
+    <h3>RESULT</h3>
+    <p>A working detector that takes a URL and returns a phishing verdict, built and demonstrated as the group capstone deliverable.</p>
+  </div>
+</div>
+
 <script>
-document.querySelectorAll(".card").forEach(card => {
+// mobile nav
+const toggle = document.getElementById('menuToggle');
+const links = document.getElementById('navLinks');
+toggle.addEventListener('click', () => links.classList.toggle('open'));
+links.querySelectorAll('a').forEach(a =>
+  a.addEventListener('click', () => links.classList.remove('open'))
+);
 
-card.addEventListener("mousemove", e => {
-
-const rect = card.getBoundingClientRect();
-
-const x = e.clientX - rect.left;
-const y = e.clientY - rect.top;
-
-card.style.setProperty("--x", x + "px");
-card.style.setProperty("--y", y + "px");
-
+// project filters
+const buttons = document.querySelectorAll('.filter-btn');
+const cards = document.querySelectorAll('#projectGrid .pcard');
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    buttons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    cards.forEach(c => {
+      c.style.display = (f === 'all' || c.dataset.cat === f) ? 'flex' : 'none';
+    });
+  });
 });
 
+// close modal on Escape
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && location.hash.startsWith('#m-')) {
+    location.hash = '#work';
+  }
 });
-function reveal(){
-
-let reveals=document.querySelectorAll(".reveal");
-
-for(let i=0;i<reveals.length;i++){
-
-let windowHeight=window.innerHeight;
-let elementTop=reveals[i].getBoundingClientRect().top;
-let elementVisible=120;
-
-if(elementTop < windowHeight - elementVisible){
-reveals[i].classList.add("active");
-}
-else{
-reveals[i].classList.remove("active");
-}
-
-}
-
-}
-
-window.addEventListener("scroll", reveal);
-
 </script>
+
 </body>
 </html>
