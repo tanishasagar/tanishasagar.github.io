@@ -312,6 +312,43 @@ h2.section-title{
 .clink-label{font-family:var(--mono);font-size:11px;color:var(--dim);display:block;}
 .clink-val{font-size:14.5px;color:var(--text);}
 
+  /* contact form */
+.contact-form-wrap{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:16px;padding:36px;
+}
+.form-title{
+  font-family:var(--display);font-size:20px;font-weight:600;
+  margin-bottom:6px;letter-spacing:-.3px;
+}
+.form-sub{font-size:13.5px;color:var(--muted);margin-bottom:28px;}
+.f-row{margin-bottom:20px;}
+.f-lbl{
+  display:block;font-family:var(--mono);font-size:11.5px;
+  color:var(--dim);margin-bottom:8px;letter-spacing:.3px;
+}
+.f-inp,.f-ta{
+  width:100%;background:var(--surface-2);
+  border:1px solid var(--line);border-radius:8px;
+  color:var(--text);font-family:var(--body);font-size:14px;
+  padding:12px 14px;outline:none;
+  transition:border-color .2s,box-shadow .2s;
+}
+.f-ta{min-height:110px;resize:vertical;line-height:1.6;}
+.f-inp::placeholder,.f-ta::placeholder{color:var(--dim);}
+.f-inp:focus,.f-ta:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(61,220,151,.12);
+}
+.f-submit{
+  font-family:var(--mono);font-size:14px;font-weight:500;
+  background:var(--accent);color:#04120C;border:none;
+  padding:13px 26px;border-radius:8px;cursor:pointer;
+  transition:.2s;
+}
+.f-submit:hover{background:#5CEFAD;transform:translateY(-2px);}
+.f-note{font-size:12px;color:var(--dim);margin-top:14px;}
+
 /* ---------- footer ---------- */
 footer{
   padding:36px 6vw;border-top:1px solid var(--line);
@@ -755,10 +792,31 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
         <i class="fa-brands fa-github"></i>
         <span><span class="clink-label">GITHUB</span><span class="clink-val">github.com/tanishasagar</span></span>
       </a>
-      <a class="clink" href="Tanisha_Sagar_Resume.pdf" download>
+            <a class="clink" href="Tanisha_Sagar_Resume.pdf" download>
         <i class="fa-solid fa-file-arrow-down"></i>
         <span><span class="clink-label">RESUME</span><span class="clink-val">Download PDF</span></span>
       </a>
+    </div>
+
+    <div class="contact-form-wrap">
+      <div class="form-title">Send a message</div>
+      <div class="form-sub">No spam, no fluff, just a real note.</div>
+      <form action="https://formspree.io/f/mbgjnejr" method="POST">
+        <div class="f-row">
+          <label class="f-lbl">YOUR NAME</label>
+          <input type="text" name="name" class="f-inp" placeholder="What should I call you?" required>
+        </div>
+        <div class="f-row">
+          <label class="f-lbl">EMAIL</label>
+          <input type="email" name="email" class="f-inp" placeholder="Where should I reply?" required>
+        </div>
+        <div class="f-row">
+          <label class="f-lbl">MESSAGE</label>
+          <textarea name="message" class="f-ta" placeholder="Role, opportunity, or just a hello." required></textarea>
+        </div>
+        <button type="submit" class="f-submit">Send Message →</button>
+      </form>
+      <div class="f-note">Goes straight to my inbox, usually reply within 24 hours.</div>
     </div>
   </div>
 </section>
