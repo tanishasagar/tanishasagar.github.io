@@ -28,6 +28,47 @@
   --mono:'JetBrains Mono',monospace;
   --display:'Space Grotesk',sans-serif;
   --body:'Inter',sans-serif;
+  /* light theme overrides */
+[data-theme="light"]{
+  --bg:#F6F8FA;
+  --surface:#FFFFFF;
+  --surface-2:#EEF2F6;
+  --line:rgba(12,20,32,.10);
+  --line-strong:rgba(12,20,32,.18);
+  --text:#0D1620;
+  --muted:#51617A;
+  --dim:#7E8EA3;
+  --accent:#12805A;
+  --accent-2:#4553C8;
+  --warn:#A2620A;
+}
+[data-theme="light"] .bg-glow{opacity:.14;}
+[data-theme="light"] .bg-glow.a{background:#7FD6B4;}
+[data-theme="light"] .bg-glow.b{background:#A9B2F0;}
+[data-theme="light"] .bg-grid{
+  background-image:
+    linear-gradient(rgba(69,83,200,.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(69,83,200,.07) 1px,transparent 1px);
+}
+[data-theme="light"] nav{background:rgba(246,248,250,.85);}
+[data-theme="light"] .btn-primary{color:#FFFFFF;}
+[data-theme="light"] .cv-btn:hover{color:#FFFFFF!important;}
+[data-theme="light"] .filter-btn.active{color:#FFFFFF;}
+[data-theme="light"] .repo-btn:hover{background:var(--accent);color:#FFFFFF;}
+[data-theme="light"] .modal{background:rgba(220,228,236,.85);}
+[data-theme="light"] .tl-dot{background:var(--bg);}
+
+/* theme toggle button */
+.theme-toggle{
+  display:flex;align-items:center;justify-content:center;
+  width:34px;height:34px;border-radius:50%;
+  border:1px solid var(--line-strong);
+  background:var(--surface);color:var(--muted);
+  cursor:pointer;flex-shrink:0;
+  transition:border-color .2s,color .2s,transform .45s cubic-bezier(.34,1.56,.64,1);
+}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);}
+.theme-toggle.spin{transform:rotate(360deg);}
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -325,11 +366,19 @@ footer p{font-family:var(--mono);font-size:12.5px;color:var(--dim);}
   border-radius:8px;padding:13px 16px;margin-top:26px;line-height:1.65;
 }
 
+  /* scroll reveal */
+.rv{
+  opacity:0;transform:translateY(22px);
+  transition:opacity .56s cubic-bezier(.16,1,.3,1),transform .56s cubic-bezier(.16,1,.3,1);
+}
+.rv.show{opacity:1;transform:none;}
+
 /* ---------- a11y + responsive ---------- */
 a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px;}
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;}
   html{scroll-behavior:auto;}
+  .rv{opacity:1!important;transform:none!important;}
 }
 @media(max-width:880px){
   .contact-wrap{grid-template-columns:1fr;gap:38px;}
@@ -344,6 +393,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   .nav-links.open{display:flex;}
   .nav-links li{padding:11px 0;}
   .menu-toggle{display:block;}
+  .theme-toggle{display:flex;}
   .hero h1{letter-spacing:-2px;}
   .modal-box{padding:30px 24px;}
   .modal{padding:30px 14px;}
@@ -363,9 +413,22 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
     <li><a href="#experience">Experience</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a class="cv-btn" href="Tanisha_Sagar_Resume.pdf" download>Download CV</a></li>
+        <li><a class="cv-btn" href="Tanisha_Sagar_Resume.pdf" download>Download CV</a></li>
   </ul>
-  <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">&#9776;</button>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme">
+      <svg id="iconMoon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/>
+      </svg>
+      <svg id="iconSun" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="display:none">
+        <circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/>
+        <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/>
+        <line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>
+      </svg>
+    </button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">&#9776;</button>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -390,19 +453,19 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 
   <div class="stats">
     <div>
-      <div class="stat-num">12</div>
+      <div class="stat-num"><span class="count" data-to="12">0</span></div>
       <div class="stat-label">PENTEST TASKS COMPLETED</div>
     </div>
     <div>
-      <div class="stat-num">15<em>+</em></div>
+      <div class="stat-num"><span class="count" data-to="15">0</span><em>+</em></div>
       <div class="stat-label">SECURITY TOOLS USED</div>
     </div>
     <div>
-      <div class="stat-num">2</div>
+      <div class="stat-num"><span class="count" data-to="2">0</span></div>
       <div class="stat-label">CYBERSECURITY INTERNSHIPS</div>
     </div>
     <div>
-      <div class="stat-num">5</div>
+      <div class="stat-num"><span class="count" data-to="5">0</span></div>
       <div class="stat-label">PROJECTS BUILT</div>
     </div>
   </div>
@@ -426,7 +489,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 
   <div class="projects" id="projectGrid">
 
-    <a href="#m-pentest" class="pcard" data-cat="pentest">
+    <a href="#m-pentest" class="pcard rv" data-cat="pentest" style="transition-delay:0ms">
       <div class="pcard-meta">UptoSkills · Apr – Jul 2026 · Live infrastructure</div>
       <h3>Authorized Penetration Test</h3>
       <p>
@@ -442,7 +505,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
       <div class="pcard-cta">Open case study →</div>
     </a>
 
-    <a href="#m-intel" class="pcard" data-cat="intel">
+    <a href="#m-intel" class="pcard rv" data-cat="intel" style="transition-delay:80ms">
       <div class="pcard-meta">Unified Mentor · Python · IOC pipeline</div>
       <h3>Threat Intelligence Aggregator</h3>
       <p>
@@ -457,7 +520,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
       <div class="pcard-cta">Open case study →</div>
     </a>
 
-    <a href="#m-pdf" class="pcard" data-cat="intel">
+    <a href="#m-pdf" class="pcard rv" data-cat="intel" style="transition-delay:160ms">
       <div class="pcard-meta">Unified Mentor · Static + dynamic analysis</div>
       <h3>PDF Malware Analysis</h3>
       <p>
@@ -472,7 +535,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
       <div class="pcard-cta">Open case study →</div>
     </a>
 
-    <a href="#m-registry" class="pcard" data-cat="detection">
+    <a href="#m-registry" class="pcard rv" data-cat="detection" style="transition-delay:240ms">
       <div class="pcard-meta">Unified Mentor · Python · Windows</div>
       <h3>Windows Registry Monitoring</h3>
       <p>
@@ -486,7 +549,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
       <div class="pcard-cta">Open case study →</div>
     </a>
 
-    <a href="#m-process" class="pcard" data-cat="detection">
+    <a href="#m-process" class="pcard rv" data-cat="detection" style="transition-delay:320ms">
       <div class="pcard-meta">Unified Mentor · Python · PowerShell</div>
       <h3>Process &amp; Service Monitoring Agent</h3>
       <p>
@@ -501,7 +564,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
       <div class="pcard-cta">Open case study →</div>
     </a>
 
-    <a href="#m-phishing" class="pcard" data-cat="detection">
+    <a href="#m-phishing" class="pcard rv" data-cat="detection" style="transition-delay:400ms">
       <div class="pcard-meta">Galgotias University · Capstone · Group project</div>
       <h3>Phishing Detection with ML</h3>
       <p>
@@ -526,7 +589,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 
   <div class="timeline">
 
-    <div class="tl-item">
+    <div class="tl-item rv">
       <div class="tl-dot"></div>
       <div class="tl-date">Apr 2026 – Jul 2026 · Completed</div>
       <h3>Cybersecurity Intern</h3>
@@ -539,7 +602,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
       </ul>
     </div>
 
-    <div class="tl-item past">
+    <div class="tl-item past rv">
       <div class="tl-dot"></div>
       <div class="tl-date">Nov 2025 – Feb 2026 · Completed</div>
       <h3>Cybersecurity Intern</h3>
@@ -551,7 +614,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
       </ul>
     </div>
 
-    <div class="tl-item past">
+    <div class="tl-item past rv">
       <div class="tl-dot"></div>
       <div class="tl-date">2022 – 2026</div>
       <h3>B.Sc. (Hons.) Computer Science, Cybersecurity specialisation</h3>
@@ -573,37 +636,37 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 
   <div class="skill-grid">
 
-    <div class="skill-card">
+    <div class="skill-card rv">
       <h3>Penetration Testing</h3>
       <div class="lvl">Hands-on · Live engagement</div>
       <p>Reconnaissance, scanning, enumeration and exploitation testing against real infrastructure. Comfortable picking the right tool for a phase and documenting what it found, including when the honest answer is "nothing exploitable here."</p>
     </div>
 
-    <div class="skill-card">
+    <div class="skill-card rv">
       <h3>OSINT &amp; Reconnaissance</h3>
       <div class="lvl">Hands-on · Live engagement</div>
       <p>Mapping external attack surface and subdomains using Shodan, Censys, Google Dorking, Wappalyzer, Masscan, TheHarvester and the Wayback Machine.</p>
     </div>
 
-    <div class="skill-card">
+    <div class="skill-card rv">
       <h3>Threat Intelligence &amp; Malware Analysis</h3>
       <div class="lvl">Hands-on · Built tooling</div>
       <p>IOC normalization and cross-feed correlation, plus static and dynamic analysis of suspicious files using PDFID, pdf-parser and sandbox detonation.</p>
     </div>
 
-    <div class="skill-card">
+    <div class="skill-card rv">
       <h3>Detection &amp; Monitoring</h3>
       <div class="lvl">Hands-on · Built tooling</div>
       <p>Python agents for Windows registry persistence detection and process/service anomaly monitoring, with baseline comparison and severity-ranked alerting.</p>
     </div>
 
-    <div class="skill-card">
+    <div class="skill-card rv">
       <h3>Log Analysis, SIEM &amp; Incident Response</h3>
       <div class="lvl foundational">Foundational · Labs &amp; coursework</div>
       <p>Log analysis, event correlation, incident response playbooks and SIEM concepts through the Google Cybersecurity Professional Certificate lab environment. No production SIEM platform time yet.</p>
     </div>
 
-    <div class="skill-card">
+    <div class="skill-card rv">
       <h3>Networking &amp; Systems</h3>
       <div class="lvl">Hands-on · CCNA certified</div>
       <p>TCP/IP, DNS, routing and switching, firewall and IDS/IPS fundamentals. Daily driver experience with Kali Linux in VirtualBox, plus Windows security monitoring.</p>
@@ -635,23 +698,23 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   <p class="section-sub">Plus SQL injection labs on PortSwigger Web Security Academy and foundational labs on TryHackMe.</p>
 
   <div class="cert-list">
-    <div class="cert">
+    <div class="cert rv">
       <i class="fa-solid fa-certificate"></i>
       <div><h3>Google Cybersecurity Professional Certificate</h3><span>Coursera · 2025</span></div>
     </div>
-    <div class="cert">
+    <div class="cert rv">
       <i class="fa-solid fa-certificate"></i>
       <div><h3>Cisco Certified Network Associate (CCNA)</h3><span>Cisco · 2025</span></div>
     </div>
-    <div class="cert">
+    <div class="cert rv">
       <i class="fa-solid fa-certificate"></i>
       <div><h3>Network Security</h3><span>Cisco · 2026</span></div>
     </div>
-    <div class="cert">
+    <div class="cert rv">
       <i class="fa-solid fa-certificate"></i>
       <div><h3>Introduction to Cybersecurity</h3><span>Cisco Networking Academy · 2025</span></div>
     </div>
-    <div class="cert">
+    <div class="cert rv">
       <i class="fa-solid fa-certificate"></i>
       <div><h3>Python for Data Science</h3><span>IBM · 2023</span></div>
     </div>
@@ -893,6 +956,60 @@ document.addEventListener('keydown', e => {
     location.hash = '#work';
   }
 });
+// theme toggle
+(() => {
+  const btn = document.getElementById('themeToggle');
+  const root = document.documentElement;
+  const moon = document.getElementById('iconMoon');
+  const sun  = document.getElementById('iconSun');
+  const saved = localStorage.getItem('theme') || 'light';
+
+  const apply = t => {
+    root.setAttribute('data-theme', t);
+    moon.style.display = t === 'light' ? 'none' : '';
+    sun.style.display  = t === 'light' ? '' : 'none';
+  };
+  apply(saved);
+
+  btn.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    apply(next);
+    localStorage.setItem('theme', next);
+    btn.classList.add('spin');
+    setTimeout(() => btn.classList.remove('spin'), 500);
+  });
+})();
+
+// count-up stats
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const run = (el, to) => {
+    if (reduce) { el.textContent = to; return; }
+    const start = performance.now(), dur = 1100;
+    const step = now => {
+      const t = Math.min(1, (now - start) / dur);
+      el.textContent = Math.round(to * (1 - Math.pow(1 - t, 3)));
+      if (t < 1) requestAnimationFrame(step); else el.textContent = to;
+    };
+    requestAnimationFrame(step);
+  };
+  const io = new IntersectionObserver(es => {
+    es.forEach(e => {
+      if (e.isIntersecting) { run(e.target, +e.target.dataset.to); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.count').forEach(el => io.observe(el));
+})();
+
+// scroll reveal
+(() => {
+  const io = new IntersectionObserver(es => {
+    es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+})();
 </script>
 
 </body>
