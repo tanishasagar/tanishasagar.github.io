@@ -146,17 +146,9 @@ h2.section-title{
 
 /* ---------- hero ---------- */
 .hero{padding-top:96px;padding-bottom:70px;}
-.status-pill{
-  display:inline-flex;align-items:center;gap:10px;
-  font-family:var(--mono);font-size:12.5px;color:var(--accent);
-  border:1px solid rgba(61,220,151,.3);background:rgba(61,220,151,.06);
-  padding:7px 15px;border-radius:100px;margin-bottom:30px;
-}
-.pulse{
-  width:7px;height:7px;border-radius:50%;background:var(--accent);
-  box-shadow:0 0 9px var(--accent);animation:pulse 2.2s infinite;
-}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.status-line{font-size:15px;color:var(--muted);margin-bottom:26px;}
+.status-line a{color:var(--text);text-decoration:underline;text-underline-offset:3px;}
+.status-line a:hover{color:var(--accent);}
 
 .hero h1{
   font-family:var(--display);font-weight:700;
@@ -482,7 +474,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="status-pill"><span class="pulse"></span> Open to VAPT / SOC roles</div>
+  <p class="status-line">Open to VAPT and SOC roles in Delhi NCR. <a href="#contact">Get in touch</a></p>
 
   <h1>Tanisha Sagar</h1>
 
